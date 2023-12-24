@@ -8,9 +8,11 @@ from skills.models import Skill
 class Major(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    jops= models.ManyToManyField(Job)
+    jobs= models.ManyToManyField(Job)
     certificates=models.ManyToManyField(Certificate)
     companies=models.ManyToManyField(Copmany)
     courses=models.ManyToManyField(Course)
     skills=models.ManyToManyField(Skill)
 
+    def __str__(self):
+        return self.name
