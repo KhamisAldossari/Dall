@@ -13,6 +13,7 @@ class Major(models.Model):
     companies=models.ManyToManyField(Copmany)
     courses=models.ManyToManyField(Course)
     skills=models.ManyToManyField(Skill)
+    image=models.ImageField(upload_to="images/", default="images/avatar-default.png")
 
     def __str__(self):
         return self.name
