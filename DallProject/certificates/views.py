@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
-from certificates.models import Certificate
 from companies.models import Company
 from courses.models import Course
 from jobs.models import Job
@@ -17,11 +16,11 @@ def add_certificate_view(request:HttpRequest):
                                     description=request.POST["description"],
                                     provider=request.POST["provider"],
                                     )
-            if 'image' in request.FILES:
-                new_certificate.image=request.FILES["image"]
+            if 'certificate_image' in request.FILES:
+                new_certificate.certificate_image=request.FILES["certificate_image"]
 
             new_certificate.save()
-            return redirect('certificates:certificates_home_view')
+            return redirect('certificates:certificate_home_view')
     except Exception as e:
         msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request , 'certificates/add_certificate.html',{'msg':msg})
@@ -35,8 +34,8 @@ def update_certificate_view(request:HttpRequest,certificate_id):
             update_certificate.name=request.POST["name"]
             update_certificate.description=request.POST["description"]
             update_certificate.provider=request.POST["provider"]
-            if 'image' in request.FILES:
-                update_certificate.certificate_image=request.FILES["image"]
+            if 'certificate_image' in request.FILES:
+                update_certificate.certificate_image=request.FILES["certificate_image"]
 
             update_certificate.save()
             return redirect ('certificates:detail_certificate_view',certificate_id=update_certificate.id)
