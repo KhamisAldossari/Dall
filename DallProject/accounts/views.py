@@ -22,7 +22,7 @@ def register_user_view(request: HttpRequest):
 
             return redirect("accounts:login_user_view")
         except IntegrityError as e:
-            msg = f"Please select another username"
+            msg = f"Please select another username, {e}"
         except Exception as e:
             msg = f"something went wrong {e}"
 
@@ -61,7 +61,7 @@ def logout_user_view(request: HttpRequest):
 def user_profile_view(request: HttpRequest, user_id):
 
     try:
-        
+
         user = UserProfile.objects.get(user=User.objects.get(id=user_id))
 
     except:
@@ -84,12 +84,9 @@ def update_user_view(request: HttpRequest):
                 user.email = request.POST["email"]
                 user.save()
 
-                try:
-                    profile : UserProfile = request.user.userprofile
-                except Exception as e:
-                    profile = UserProfile(user=user)
-                    profile.save()
-
+              
+                profile = UserProfile.objects.get(user=user)
+                
                 profile.birth_date = request.POST["birth_date"]
                 if 'profile_picture' in request.FILES: profile.profile_picture = request.FILES["profile_picture"]
                 profile.bio = request.POST["bio"]
