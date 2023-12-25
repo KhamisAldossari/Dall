@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block title %} All certificates {% endblock %}
+{% block content %} 
+
+<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All certificates</h2>
+
+<div class="container-fluid mt-5">
+  <div class="row  h-100">
+    {% for certificate in view_certificate %}
+      <div class="col-lg-4 h-100">
+        <a href="#" class="text-decoration-none"><img src="{{ certificate.certificate_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+        <h2 class="fw-normal">{{ certificate.name }}</h2>
+        <p>{{ certificate.description }}</p>
+        <p><a class="btn btn-secondary" href="#">Discover »</a></p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+  
+    
+{%endblock%}

@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.contrib.auth.models import User
@@ -107,3 +108,4 @@ def update_user_view(request: HttpRequest):
             msg = f"something went wrong {e}"
 
     return render(request, "accounts/update.html", {"msg" : msg})
+
