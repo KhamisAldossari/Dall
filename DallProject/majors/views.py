@@ -31,7 +31,7 @@ def update_major_view(request:HttpRequest,major_id):
         update_major=Major.objects.get(id=major_id)
         
         if request.method == "POST":
-            update_major.name=request.POST["title"]
+            update_major.name=request.POST["name"]
             update_major.description=request.POST["description"]
             if 'image' in request.FILES:
                 update_major.image=request.FILES["image"]

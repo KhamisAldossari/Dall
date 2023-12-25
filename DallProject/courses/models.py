@@ -6,6 +6,7 @@ class Course(models.Model):
     description = models.TextField()
     duration= models.CharField(max_length=100)
     provider= models.CharField(max_length=100)
+    course_image=models.ImageField(upload_to="images/", default="images/avatar-default.png")
     
 
     def __str__(self):
