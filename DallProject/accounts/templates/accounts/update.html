@@ -1,0 +1,55 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %}Update User Profile{% endblock %}
+
+{% block content %}
+  <section class="container mt-5">
+    <h1>Update your profile</h1>
+
+    {% if msg %}
+        <div class="alert alert-danger" role="alert">
+        {{ msg }}
+        </div>
+    {% endif %}
+    <div class="row">
+    
+        <div class="col-6">
+
+            <form class="d-flex flex-column gap-1" action="{% url 'accounts:update_user_view' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                First name:
+                <input class="form-control"  type="text" name="first_name" required minlength="3" placeholder="First Name" value="{{ request.user.first_name }}"/>
+                Last name: 
+                <input class="form-control" type="text" name="last_name" required minlength="3" placeholder="Last Name"  value="{{ request.user.last_name }}"/>
+                email: 
+                <input class="form-control" type="email" name="email" required minlength="3" placeholder="Email" value="{{ request.user.email }}"/>
+                Bio: 
+                <textarea class="form-control" name="bio" placeholder=" Bio">{{ request.user.userprofile.bio }}</textarea>
+                Profile picture: 
+                <div class="d-flex align-items-center gap-2 ">
+                    <img src="{{ request.user.userprofile.profile_picture.url }}"  class="avatar rounded-circle"/>
+                    <input class="form-control" type="file" name="profile_picture"  placeholder="choose profile picture"/>
+                </div>
+                Birthdate: 
+                <input class="form-control" type="date" name="birth_date" required value="{{ request.user.profile.birth_date.isoformat }}" />
+                Phone number:
+                <input class="form-control"  type="text" name="phone_number"  placeholder="Phone number" value="{{ request.user.userprofile.phone_number }}"/>
+                Major:
+                <input class="form-control"  type="text" name="major"  placeholder="major" value="{{ request.user.userprofile.major }}"/>
+                Dgree:
+                <input class="form-control"  type="text" name="degree"  placeholder="degree" value="{{ request.user.userprofile.degree }}"/>
+                University name: 
+                <input class="form-control"  type="text" name="university_name"  placeholder="university name" value="{{ request.user.userprofile.university_name }}"/>
+                
+                <input class="btn btn-primary" type="submit" value="Update profile" />
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
