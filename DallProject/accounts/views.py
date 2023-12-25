@@ -62,7 +62,7 @@ def user_profile_view(request: HttpRequest, user_id):
 
     try:
         
-        user = User.objects.get(id=user_id)
+        user = UserProfile.objects.get(user=User.objects.get(id=user_id))
 
     except:
         return render(request, 'main/not_found.html')
@@ -85,7 +85,7 @@ def update_user_view(request: HttpRequest):
                 user.save()
 
                 try:
-                    profile : UserProfile = request.user.user_profile
+                    profile : UserProfile = request.user.userprofile
                 except Exception as e:
                     profile = UserProfile(user=user)
                     profile.save()
@@ -95,6 +95,7 @@ def update_user_view(request: HttpRequest):
                 profile.bio = request.POST["bio"]
                 profile.phone_number = request.POST["phone_number"]
                 profile.major = request.POST["major"]
+                profile.degree = request.POST["degree"]
                 profile.university_name = request.POST["university_name"]
 
                 profile.save()
