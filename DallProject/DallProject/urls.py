@@ -27,7 +27,7 @@ urlpatterns = [
     path("courses/",include("courses.urls")),
     path("favorites/",include("favorites.urls")),
     path("jobs/",include("jobs.urls")),
-    path("main/",include("main.urls")),
+    path("",include("main.urls")),
     path("majors/",include("majors.urls")),
     path("posts/",include("posts.urls")),
     path("replies/",include("replies.urls")),
