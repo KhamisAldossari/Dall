@@ -8,10 +8,10 @@
   <div class="row  h-100">
     {% for certificate in view_certificate %}
       <div class="col-lg-4 h-100">
-        <a href="#" class="text-decoration-none"><img src="{{ certificate.certificate_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+        <a href="{% url 'certificates:detail_certificate_view' certificate.id  %}" class="text-decoration-none"><img src="{{ certificate.certificate_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
         <h2 class="fw-normal">{{ certificate.name }}</h2>
         <p>{{ certificate.description }}</p>
-        <p><a class="btn btn-secondary" href="#">Discover »</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'certificates:detail_certificate_view' certificate.id  %}">Discover »</a></p>
       </div>
     {% endfor %}
   </div>

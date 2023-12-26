@@ -28,6 +28,23 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'main:home_view' %} ">Home</a>
                     </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        manage
+                      </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     
+                      <li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
+                      <li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
+                      <li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
+                      <li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
+                      <li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
+                      <li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
+                      
+              
+                      
+                    </ul>
+                    </li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'main:home_view'%}">Tasks</a>

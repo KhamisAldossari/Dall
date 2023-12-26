@@ -3,7 +3,7 @@ from .models import Skill
 
 # Define the admin class
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+    list_display = ('name',)
     search_fields = ('name',)
 
 # Register the admin class with the associated model

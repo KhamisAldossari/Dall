@@ -1,9 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
-from certificates.models import Certificate
-from companies.models import Company
-from courses.models import Course
-from skills.models import Skill
 from .models import Job
 
 # Create your views here.
@@ -16,7 +12,7 @@ def add_job_view(request:HttpRequest):
                                     description=request.POST["description"],
                                     )
             new_job.save()
-            return redirect('jobs:jobs_home_view')
+            return redirect('jobs:job_home_view')
     except Exception as e:
         msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request , 'jobs/add_job.html',{'msg':msg})
@@ -55,16 +51,10 @@ def job_home_view(request:HttpRequest):
         return render(request, "main/not_found.html", status=401)
     return render(request , 'jobs/job_home.html',{'view_job':view_job})
 def detail_job_view(request:HttpRequest,job_id):
-    '''
+    
     try:
-        job_detail=job.objects.get(id=job_id)
-        
-        comments = Comment.objects.filter(job=job_detail)
-
-        is_favored = request.user.is_authenticated and Favorite.objects.filter(job=job_detail, user=request.user).exists()
-
-        comment_max = Comment.objects.filter(job=job_detail).aggregate(Max("rating"))["rating__max"]
+        job_detail=Job.objects.get(id=job_id)
     except:
         return render(request, "main/not_found.html", status=401)
-    return render(request, 'job/detail_job.html',{"job_detail":job_detail,'comments':comments,'comment_max':comment_max,"is_favored":is_favored})
-    '''
+    return render(request, 'jobs/detail_job.html',{"job_detail":job_detail})
+    

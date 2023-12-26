@@ -51,7 +51,7 @@ def delete_certificate_view(request:HttpRequest,certificate_id):
             return render(request, "main/not_authorized.html", status=401)
         '''
         delete_certificate.delete()
-        return redirect('certificates:',)
+        return redirect('certificates:certificate_home_view')
     except Exception as e:
          msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request, 'certificates/detail_certificate.html',{"msg":msg})
@@ -62,3 +62,11 @@ def certificate_home_view(request:HttpRequest):
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'certificates/certificate_home.html',{'view_certificate':view_certificate})
+def detail_certificate_view(request:HttpRequest,certificate_id):
+    
+    try:
+        certificate_detail=Certificate.objects.get(id=certificate_id)
+    except:
+        return render(request, "main/not_found.html", status=401)
+    return render(request, 'certificates/detail_certificate.html',{"certificate_detail":certificate_detail})
+    

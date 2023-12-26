@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% block title %} Certificate detail {% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 5rem;">
+  {% if msg %}
+      <div class="alert alert-danger" role="alert">
+          {{ msg }}
+        </div>
+        {%endif%}
+    <div class="clearfix">
+      
+      <img src="{{ certificate_detail.certificate_image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3 rounded-circle" style="width: 10rem; height: 10rem; object-fit: cover;" alt="...">
+    <h1 class="certificate-title">{{ certificate_detail.name }}</h1>
+    <p class="certificate-description">{{ certificate_detail.description }}</p>
+    <p class="certificate-description">{{ certificate_detail.provider }}</p>
+
+    </div>
+    <div class="d-flex justify-content-end m-2">
+        <div class="dropdown m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Edit
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="{%url 'certificates:update_certificate_view'  certificate_detail.id %}" class="dropdown-item" >Update Certificate</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete certificate</a></li>
+
+            </ul>
+            
+          </div>
+    
+
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Certificate</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                 do you want to delete the certificate {{ certificate_detail.name }} ? click yes if yes
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <a href="{% url 'certificates:delete_certificate_view' certificate_detail.id  %}" class="btn btn-danger">Yes, delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+
+
+</div>
+{%endblock%}

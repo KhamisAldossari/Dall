@@ -50,7 +50,7 @@ def delete_company_view(request:HttpRequest,company_id):
             return render(request, "main/not_authorized.html", status=401)
         '''
         delete_company.delete()
-        return redirect('companys:',)
+        return redirect('companies:company_home_view')
     except Exception as e:
          msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request, 'companies/detail_company.html',{"msg":msg})
@@ -61,3 +61,11 @@ def company_home_view(request:HttpRequest):
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'companies/company_home.html',{'view_company':view_company})
+def detail_company_view(request:HttpRequest,company_id):
+    
+    try:
+        company_detail=Company.objects.get(id=company_id)
+    except:
+        return render(request, "main/not_found.html", status=401)
+    return render(request, 'companies/detail_company.html',{"company_detail":company_detail})
+    

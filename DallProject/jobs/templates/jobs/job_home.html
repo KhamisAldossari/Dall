@@ -8,10 +8,10 @@
   <div class="row  h-100">
     {% for job in view_job %}
       <div class="col-lg-4 h-100">
-        <a href="#" class="text-decoration-none">
+        <a href="{% url 'jobs:detail_job_view' job.id  %}" class="text-decoration-none">
         <h2 class="fw-normal">{{ job.name }}</h2></a>
         <p>{{ job.description }}</p>
-        <p><a class="btn btn-secondary" href="#">Discover »</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'jobs:detail_job_view' job.id  %}">Discover »</a></p>
       </div>
     {% endfor %}
   </div>

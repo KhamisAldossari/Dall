@@ -3,9 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
-from companies.models import Company
-from jobs.models import Job
-from skills.models import Skill
 from .models import Course
 
 # Create your views here.
@@ -58,7 +55,7 @@ def delete_course_view(request:HttpRequest,course_id):
             return render(request, "main/not_authorized.html", status=401)
         '''
         delete_course.delete()
-        return redirect('courses:',)
+        return redirect('courses:course_home_view')
     except Exception as e:
          msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request, 'courses/detail_course.html',{"msg":msg})
@@ -69,3 +66,11 @@ def course_home_view(request:HttpRequest):
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'courses/course_home.html',{'view_course':view_course})
+def detail_course_view(request:HttpRequest,course_id):
+    
+    try:
+        course_detail=Course.objects.get(id=course_id)
+    except:
+        return render(request, "main/not_found.html", status=401)
+    return render(request, 'courses/detail_course.html',{"course_detail":course_detail})
+    

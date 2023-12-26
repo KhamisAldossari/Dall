@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block title %} All Skills {% endblock %}
+{% block content %} 
+
+<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Skills</h2>
+
+<div class="container-fluid mt-5">
+  <div class="row  h-100">
+    {% for skill in view_skill %}
+      <div class="col-lg-4 h-100">
+        <a href="{% url 'skills:detail_skill_view' skill.id  %}" class="text-decoration-none">
+        <h2 class="fw-normal">{{ skill.name }}</h2></a>
+        <p><a class="btn btn-secondary" href="{% url 'skills:detail_skill_view' skill.id  %}">Discover »</a></p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+  
+    
+{%endblock%}

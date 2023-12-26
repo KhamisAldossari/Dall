@@ -1,12 +1,12 @@
 {% extends 'main/base.html' %}
-{% block title %} Edit Job {% endblock %}
+{% block title %} Edit Skill {% endblock %}
 {% block content %}
 <section class="d-flex justify-content-center">
 <div class="col-md-7 col-lg-8 m-3 mt-5">
   <div class="d-flex justify-content-center border rounded" style="margin-top: 5rem;margin-bottom: 3rem;">
-    <h4 class="">Update Job</h4>
+    <h4 class="">Update Skill</h4>
   </div>
-    <form class="needs-validation" action="{%url 'jobs:update_job_view' update_job.id %}" method="POST">
+    <form class="needs-validation" action="{%url 'skills:update_skill_view' update_skill.id %}" method="POST">
       {% if msg %}
       <div class="alert alert-danger" role="alert">
           {{ msg }}
@@ -15,19 +15,10 @@
       {% csrf_token %}
         <div class="row g-3">
         <div class="col-sm-6">
-          <label class="form-label">job Name</label>
-          <input type="text" class="form-control" name="name"   value="{{update_job.name}}" >
+          <label class="form-label">skill Name</label>
+          <input type="text" class="form-control" name="name"   value="{{update_skill.name}}" >
           
         </div>
-
-        
-        <div class="col-sm-6">
-            <label for="description" class="form-label">description</label>
-            <textarea  class="form-control" name="description" id="description" >{{update_job.description}}</textarea>
-            
-        </div>
-            
-
       <hr class="my-4">
 
       <button class="w-100 btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button">Continue to Update</button>
@@ -39,7 +30,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Job</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Skill</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

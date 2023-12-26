@@ -8,10 +8,10 @@
   <div class="row  h-100">
     {% for company in view_company %}
       <div class="col-lg-4 h-100">
-        <a href="#" class="text-decoration-none"><img src="{{ company.company_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+        <a href="{% url 'companies:detail_company_view' company.id  %}" class="text-decoration-none"><img src="{{ company.company_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
         <h2 class="fw-normal">{{ company.name }}</h2>
         <p>{{ company.description }}</p>
-        <p><a class="btn btn-secondary" href="#">Discover »</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'companies:detail_company_view' company.id  %}">Discover »</a></p>
       </div>
     {% endfor %}
   </div>
