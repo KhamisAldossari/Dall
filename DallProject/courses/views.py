@@ -29,19 +29,22 @@ def add_course_view(request:HttpRequest):
     return render(request , 'courses/add_course.html',{'msg':msg})
 
 def update_course_view(request:HttpRequest,course_id):
+    
     msg=None
     try:
         update_course=Course.objects.get(id=course_id)
         
         if request.method == "POST":
+            
             update_course.name=request.POST["name"]
             update_course.description=request.POST["description"]
             update_course.provider=request.POST["provider"]
-            update_course.duration=request["duration"]
+            update_course.duration=request.POST["duration"]
             if 'course_image' in request.FILES:
                 update_course.course_image=request.FILES["course_image"]
-
+            
             update_course.save()
+            
             return redirect ('courses:detail_course_view',course_id=update_course.id)
     except Exception as e:
         msg = f"An error occured, please fill in all fields and try again . {e}"

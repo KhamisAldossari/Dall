@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block title %} All Title Jobs {% endblock %}
+{% block content %} 
+
+<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Title Jobs</h2>
+
+<div class="container-fluid mt-5">
+  <div class="row  h-100">
+    {% for job in view_job %}
+      <div class="col-lg-4 h-100">
+        <a href="#" class="text-decoration-none">
+        <h2 class="fw-normal">{{ job.name }}</h2></a>
+        <p>{{ job.description }}</p>
+        <p><a class="btn btn-secondary" href="#">Discover »</a></p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+  
+    
+{%endblock%}

@@ -8,7 +8,6 @@ from .models import UserProfile
 
 # Create your views here.
 
-
 def register_user_view(request: HttpRequest):
     msg = None
 
