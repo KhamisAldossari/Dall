@@ -30,7 +30,7 @@
                     </li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'main:home_view'%}">Tasks</a>
+                      <a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'main:home_view'%}">Assign new task</a>
