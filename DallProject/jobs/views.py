@@ -50,7 +50,6 @@ def delete_job_view(request:HttpRequest,job_id):
     return render(request, 'jobs/detail_job.html',{"msg":msg})
 def job_home_view(request:HttpRequest):
     try:
-        #view_job=job.objects.all()
         view_job=Job.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
