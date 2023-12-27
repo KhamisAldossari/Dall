@@ -5,6 +5,7 @@ from courses.models import Course
 from jobs.models import Job
 from skills.models import Skill
 from .models import Certificate
+from majors.models import Major
 
 # Create your views here.
 
@@ -70,3 +71,26 @@ def detail_certificate_view(request:HttpRequest,certificate_id):
         return render(request, "main/not_found.html", status=401)
     return render(request, 'certificates/detail_certificate.html',{"certificate_detail":certificate_detail})
     
+def add_certificate_major_view(request:HttpRequest, major_id, certificate_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    certificate = Certificate.objects.get(id=certificate_id) 
+    major.certificates.add(certificate) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
+
+def remove_certificate_major_view(request:HttpRequest, major_id, certificate_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    certificate = Certificate.objects.get(id=certificate_id) 
+    major.certificates.remove(certificate) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)

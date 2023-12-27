@@ -75,3 +75,7 @@ def detail_major_view(request:HttpRequest,major_id):
         return render(request, "main/not_found.html", status=401)
     return render(request, 'major/detail_major.html',{"major_detail":major_detail,'comments':comments,'comment_max':comment_max,"is_favored":is_favored})
     '''
+    major_detail=Major.objects.get(id=major_id)
+    certificates = Certificate.objects.exclude(major=major_detail)
+    companies = Company.objects.exclude(major=major_detail)
+    return render(request, 'majors/detail_major.html',{"major_detail":major_detail,'certificates':certificates,'companies':companies})

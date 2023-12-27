@@ -1,0 +1,146 @@
+{% extends 'main/base.html' %}
+{% block title %} Major detail {% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 5rem;">
+  {% if msg %}
+      <div class="alert alert-danger" role="alert">
+          {{ msg }}
+        </div>
+        {%endif%}
+    <div class="clearfix">
+      
+      <img src="{{ major_detail.image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3 rounded-circle" style="width: 10rem; height: 10rem; object-fit: cover;" alt="...">
+    <h1 class="major-title">{{ major_detail.name }}</h1>
+    <p class="major-description">{{ major_detail.description }}</p>
+    
+
+    </div>
+    <section class="row row-cols-12 row-cols-md-4">
+        
+  
+        <div class="col">
+            <h3>Certificate</h3>
+            {% for certificate in major_detail.certificates.all %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
+            <a href="{% url 'certificates:detail_certificate_view' certificate.id %}" class="text-decoration-none text-black">
+            <div class="d-flex align-items-center gap-3">
+              <img src="{{ certificate.certificate_image.url}}"  class="rounded-3 avatar" />
+              <h5>{{certificate.name}}</h5>
+            </div>
+            </a>
+            
+            <a href="{% url 'certificates:remove_certificate_major_view' major_detail.id certificate.id %}" class="btn btn-danger">remove</a>
+          
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+            <h3>Companies</h3>
+            {% for company in major_detail.companies.all %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
+            <a href="{% url 'companies:detail_company_view' company.id %}" class="text-decoration-none text-black">
+            <div class="d-flex align-items-center gap-3">
+              <img src="{{ company.company_image.url}}"  class="rounded-3 avatar" />
+              <h5>{{certificate.name}}</h5>
+            </div>
+            </a>
+            
+            <a href="{% url 'companies:remove_company_major_view' major_detail.id company.id %}" class="btn btn-danger">remove</a>
+          
+          </div>
+          {% endfor %}
+        </div>
+        
+  
+      </section>
+    <div class="d-flex justify-content-end m-2">
+        <div class="dropdown m-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Edit
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="{%url 'majors:update_major_view'  major_detail.id %}" class="dropdown-item" >Update major</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete major</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCertificate">Add Certificate</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCompany">Add Companies</a></li>
+            </ul>
+            
+          </div>
+    
+
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete major</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                 do you want to delete the major {{ major_detail.name }} ? click yes if yes
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <a href="{% url 'majors:delete_major_view' major_detail.id  %}" class="btn btn-danger">Yes, delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actors Modal -->
+
+<div class="modal fade" id="ModalCertificate" tabindex="-1" aria-labelledby="ModalCertificate" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalCertificate">Certificates</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% for certificate in certificates %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
+            <div class="d-flex align-items-center gap-3">
+              <img src="{{certificate.certificate_image.url}}"  class="rounded-3 avatar" />
+              <h5>{{ certificate.name}}</h5>
+           </div>
+            <a href="{% url 'certificates:add_certificate_major_view' major_detail.id certificate.id %}" class="btn btn-primary">Add</a>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ModalCompany" tabindex="-1" aria-labelledby="ModalCompany" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ModalCompany">Company</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for company in companies %}
+            <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
+              <div class="d-flex align-items-center gap-3">
+                <img src="{{company.company_image.url}}"  class="rounded-3 avatar" />
+                <h5>{{ company.name}}</h5>
+             </div>
+              <a href="{% url 'companies:add_company_major_view' major_detail.id company.id %}" class="btn btn-primary">Add</a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+{%endblock%}

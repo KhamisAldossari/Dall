@@ -3,6 +3,7 @@ from django.http import HttpRequest,HttpResponse
 from courses.models import Course
 from jobs.models import Job
 from skills.models import Skill
+from majors.models import Major
 from .models import Company
 
 # Create your views here.
@@ -69,3 +70,26 @@ def detail_company_view(request:HttpRequest,company_id):
         return render(request, "main/not_found.html", status=401)
     return render(request, 'companies/detail_company.html',{"company_detail":company_detail})
     
+def add_company_major_view(request:HttpRequest, major_id, company_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    company = Company.objects.get(id=company_id) 
+    major.companies.add(company) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
+
+def remove_company_major_view(request:HttpRequest, major_id, company_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    company = Company.objects.get(id=company_id) 
+    major.companies.remove(company) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
