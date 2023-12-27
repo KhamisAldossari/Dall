@@ -5,29 +5,38 @@
 
 {% block content %}
     <article>
-        <div>
-            <p>Published on: {{ post.published_at }}</p>
+        <div class="d-flex flex-column gap-2">
+            <h5> {{ post.post_user }}</h5>
+            <h6 class="text-muted">Published on: {{ post.date_posted }}</h6>
             <h3>{{post.title}}</h3>
             <p>{{ post.content }}</p>
             <a href="{% url 'posts:post_update' post.id %}">Edit Post</a>
         </div>
        <section class="row mt-3">
             <h2>Replies: </h2>
-            <div class="col">
+            <div class="col mt-2">
                 <div class="d-flex flex-column gap-2">
                  {% for r in replies %}
                     <div class="d-flex flex-column gap-2 border border-1 p-3">
+                        <h5> {{ r.reply_user }}</h5>
                         <h6 class="text-muted">Created At: {{ r.date_posted }}</h6>
-                        <p>reply: {{ r.content }}</p>
+                        <h4> {{ r.title }}</h4>
+                        <p>{{ r.content }}</p>
                     </div>
                  {% endfor %}
                 </div>
             </div>
             {% if request.user.is_authenticated %}
+            <h2>Add your reply: </h2>
 
-            <form class="d-flex flex-column gap-2" action="#" method="POST">
+
+            <form class="d-flex flex-column gap-2" action="{% url 'replies:add_reply' post.id  %}" method="POST">
+
+            
+
                 {% csrf_token %}
-                <textarea class="form-control" name="text" placeholder="Your reply"></textarea>
+                <input type="text" class="form-control" name="title"  placeholder="reply title"  required="">  
+                <textarea class="form-control" name="content" placeholder="reply content" required=""></textarea>
                 <input type="submit" value="Add Reply" class="btn btn-primary" />
               </form>
             {% endif %}

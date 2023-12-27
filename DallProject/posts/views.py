@@ -49,21 +49,26 @@ def post_detail(request, post_id):
 def post_update(request, post_id):
     msg=None
     try:
-        post = get_object_or_404(Post, id=post_id)
+        update_post = get_object_or_404(Post, id=post_id)
 
         if request.method == 'POST':
+            update_post.title=request.POST['title']
+            update_post.content=request.POST['content']
+
             action = request.POST.get('action')
             if action == 'edit':
-                post.save()
-                return redirect('posts:post_detail', post_id)
+                update_post.save()
+                return redirect('posts:post_detail', update_post.id)
+
             
             elif action == 'delete':
-                post.delete()
+                update_post.delete()
                 return redirect('posts:post_list')
             
-            post.save()
-            return redirect('posts:post_detail', post_id)
-        return render(request, 'posts/post_update.html', {'post': post})
+            update_post.save()
+            return redirect('posts:post_detail', update_post.id)
+        return render(request, 'posts/post_update.html', {'update_post': update_post})
+
     except Exception as e:
         msg= f"An error occured ! ({e})"
         return render(request, 'main/not_found.html', {'msg':msg})
