@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <article>
+        <div>
+            <p>Published on: {{ post.published_at }}</p>
+            <h3>{{post.title}}</h3>
+            <p>{{ post.content }}</p>
+            <a href="{% url 'posts:post_update' post.id %}">Edit Post</a>
+        </div>
+       <section class="row mt-3">
+            <h2>Replies: </h2>
+            <div class="col">
+                <div class="d-flex flex-column gap-2">
+                 {% for r in replies %}
+                    <div class="d-flex flex-column gap-2 border border-1 p-3">
+                        <h6 class="text-muted">Created At: {{ r.date_posted }}</h6>
+                        <p>reply: {{ r.content }}</p>
+                    </div>
+                 {% endfor %}
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+
+            <form class="d-flex flex-column gap-2" action="{% url 'replies:add_reply' id=post.id  %}" method="POST">
+                {% csrf_token %}
+                <textarea class="form-control" name="text" placeholder="Your reply"></textarea>
+                <input type="submit" value="Add Reply" class="btn btn-primary" />
+              </form>
+            {% endif %}
+
+        </section>
+    </article>
+{% endblock %}

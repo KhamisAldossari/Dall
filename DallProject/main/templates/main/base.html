@@ -45,38 +45,27 @@
                       
                     </ul>
                     </li>
-                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'main:home_view'%}">Assign new task</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'main:home_view'%}">My Reports</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">My Feedback</a>
-                    </li>
-                    {% endif %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         account
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {% if not request.user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
                         <li><a class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
-                        {% endif %}
-                        {% if request.user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
-                        {% endif %}
                       </ul>
                     </li>
                   </ul>
-                  <span>search</span>
-
+                  {% block search %}
+                  <form class="d-flex" role="search" method="get" action="#">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                  {% endblock %}
                 </div>
               </div>
             </div>
