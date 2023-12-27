@@ -4,7 +4,7 @@
 {% block title %}Posts{% endblock %}
 
 {% block search %}
-    <form class="d-flex" role="search" method="get" action="{% url 'main:post_list' %}">
+    <form class="d-flex" role="search" method="get" action="{% url 'posts:post_list' %}">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
@@ -23,7 +23,7 @@
                         <h5 class="card-title m-3">{{ post.title }}</h5>
                         <p class="card-text m-3">{{ post.content }}</p>
                         <p class="card-text m-3">Posted at: {{ post.date_posted }}</p>
-                        <a href="#" class="btn btn-primary m-3">Show</a>
+                        <a href="{% url 'posts:post_detail' post.id %}" class="btn btn-primary m-3">Show</a>
                     </div>
                 </div>
             </div>

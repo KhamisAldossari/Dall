@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from replies.models import Reply
 # Create your views here.
 
 
 def post_list(request):
+    msg=None
     try:
         if "search" in request.GET:
             posts = Post.objects.filter(title__contains=request.GET["search"])
@@ -15,7 +16,8 @@ def post_list(request):
         
         return render(request, 'posts/post_list.html', {'posts': posts})
     except Exception as e:
-        return render(request, 'main/not_found.html')
+        msg = f"An error occured,  {e}"
+        return render(request, 'main/not_found.html', {'msg':msg})
 
 def post_create(request):
     msg=None
@@ -35,7 +37,7 @@ def post_create(request):
 def post_detail(request, post_id):
     msg=None
     try:  
-        post= Post.objects.get(id=post_id)
+        post= get_object_or_404(Post, id=post_id)
         replies= post.reply_set.all()
     except Exception as e:
         msg= f"An error occured ! ({e})"
@@ -44,3 +46,24 @@ def post_detail(request, post_id):
     return render(request, 'posts/post_detail.html', {'post': post, "replies":replies})
 
 
+def post_update(request, post_id):
+    msg=None
+    try:
+        post = get_object_or_404(Post, id=post_id)
+
+        if request.method == 'POST':
+            action = request.POST.get('action')
+            if action == 'edit':
+                post.save()
+                return redirect('posts:post_detail', id=post.id)
+            
+            elif action == 'delete':
+                post.delete()
+                return redirect('posts:post_list')
+            
+            post.save()
+            return redirect('main:post_detail', id=post.id)
+        return render(request, 'posts/post_update.html', {'post': post})
+    except Exception as e:
+        msg= f"An error occured ! ({e})"
+        return render(request, 'main/not_found.html', {'msg':msg})
