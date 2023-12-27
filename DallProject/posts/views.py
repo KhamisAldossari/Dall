@@ -52,6 +52,7 @@ def post_update(request, post_id):
         post = get_object_or_404(Post, id=post_id)
 
         if request.method == 'POST':
+            
             action = request.POST.get('action')
             if action == 'edit':
                 post.save()

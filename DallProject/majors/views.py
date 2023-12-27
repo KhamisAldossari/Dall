@@ -20,7 +20,7 @@ def add_major_view(request:HttpRequest):
                 new_major.image=request.FILES["image"]
 
             new_major.save()
-            return redirect('majors:majors_home_view')
+            return redirect('majors:major_home_view')
     except Exception as e:
         msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request , 'majors/add_major.html',{'msg':msg})
@@ -56,8 +56,7 @@ def delete_major_view(request:HttpRequest,major_id):
     return render(request, 'majors/detail_major.html',{"msg":msg})
 def major_home_view(request:HttpRequest):
     try:
-        #view_major=major.objects.all()
-        view_major=Major.objects.all()
+         view_major=Major.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'majors/major_home.html',{'view_major':view_major})
