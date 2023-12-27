@@ -6,7 +6,7 @@
 {% block content %}
   <h2>Edit Post</h2>
 
-  <form method="post" enctype="multipart/form-data" action="{%url 'posts:post_update' post.id %}" class="post-form">
+  <form method="post" enctype="multipart/form-data" action="{%url 'posts:post_update' update_post.id %}" class="post-form">
 
       {% if msg %}
       <div class="alert alert-danger" role="alert">
@@ -17,13 +17,13 @@
         <div class="row g-3">
         <div class="col-sm-6">
           <label class="form-label">Post title</label>
-          <input type="text" class="form-control" name="title" value="{{post.title}}" /> 
+          <input type="text" class="form-control" name="title" value="{{update_post.title}}" /> 
         </div>
 
         <div class="row g-3">
             <div class="col-sm-6">
               <label for="content" class="form-label">Content</label>
-              <textarea  class="form-control" name="content" id="content" >{{post.content}}</textarea>
+              <textarea  class="form-control" name="content" id="content" >{{update_post.content}}</textarea>
             </div>
         </div>
 
@@ -38,5 +38,5 @@
         <button type="submit">Update Post</button>
     </form>
 
-  <a href="{% url 'posts:post_detail' post.id %}">Cancel</a>
+  <a href="{% url 'posts:post_detail' update_post.id %}">Cancel</a>
 {% endblock %}
