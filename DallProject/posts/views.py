@@ -59,6 +59,7 @@ def post_update(request, post_id):
             if action == 'edit':
                 update_post.save()
                 return redirect('posts:post_detail', update_post.id)
+
             
             elif action == 'delete':
                 update_post.delete()
@@ -67,6 +68,7 @@ def post_update(request, post_id):
             update_post.save()
             return redirect('posts:post_detail', update_post.id)
         return render(request, 'posts/post_update.html', {'update_post': update_post})
+
     except Exception as e:
         msg= f"An error occured ! ({e})"
         return render(request, 'main/not_found.html', {'msg':msg})

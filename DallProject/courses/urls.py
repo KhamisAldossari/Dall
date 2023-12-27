@@ -8,4 +8,6 @@ urlpatterns =[path("add/",views.add_course_view,name="add_course_view"),
               path("delete/<course_id>/",views.delete_course_view,name="delete_course_view"),
               path("home/",views.course_home_view,name="course_home_view"),
               path('detail/<course_id>/',views.detail_course_view,name="detail_course_view"),
+              path("add/<major_id>/<course_id>/", views.add_course_major_view, name="add_course_major_view"),
+              path("remove/<major_id>/<course_id>/", views.remove_course_major_view, name="remove_course_major_view"),
               ]

@@ -58,8 +58,12 @@ def delete_certificate_view(request:HttpRequest,certificate_id):
     return render(request, 'certificates/detail_certificate.html',{"msg":msg})
 def certificate_home_view(request:HttpRequest):
     try:
-        #view_certificate=certificate.objects.all()
-        view_certificate=Certificate.objects.all()
+        if "search" in request.GET:
+            keyword =request.GET.get("search")
+            view_certificate = Certificate.objects.filter(name__contains=keyword)
+        else:
+            #view_certificate=certificate.objects.all()
+            view_certificate=Certificate.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'certificates/certificate_home.html',{'view_certificate':view_certificate})

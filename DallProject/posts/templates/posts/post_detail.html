@@ -29,7 +29,11 @@
             {% if request.user.is_authenticated %}
             <h2>Add your reply: </h2>
 
+
             <form class="d-flex flex-column gap-2" action="{% url 'replies:add_reply' post.id  %}" method="POST">
+
+            
+
                 {% csrf_token %}
                 <input type="text" class="form-control" name="title"  placeholder="reply title"  required="">  
                 <textarea class="form-control" name="content" placeholder="reply content" required=""></textarea>

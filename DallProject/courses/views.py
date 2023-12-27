@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 from .models import Course
+from majors.models import Major
 
 # Create your views here.
 
@@ -61,8 +62,12 @@ def delete_course_view(request:HttpRequest,course_id):
     return render(request, 'courses/detail_course.html',{"msg":msg})
 def course_home_view(request:HttpRequest):
     try:
+        if "search" in request.GET:
+            keyword =request.GET.get("search")
+            view_course = Course.objects.filter(name__contains=keyword)
+        else:
         #view_course=course.objects.all()
-        view_course=Course.objects.all()
+            view_course=Course.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'courses/course_home.html',{'view_course':view_course})
@@ -74,3 +79,26 @@ def detail_course_view(request:HttpRequest,course_id):
         return render(request, "main/not_found.html", status=401)
     return render(request, 'courses/detail_course.html',{"course_detail":course_detail})
     
+def add_course_major_view(request:HttpRequest, major_id, course_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    course = Course.objects.get(id=course_id) 
+    major.courses.add(course) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
+
+def remove_course_major_view(request:HttpRequest, major_id, course_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    course = Course.objects.get(id=course_id) 
+    major.courses.remove(course) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)

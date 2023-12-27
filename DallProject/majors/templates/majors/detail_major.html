@@ -42,7 +42,7 @@
             <a href="{% url 'companies:detail_company_view' company.id %}" class="text-decoration-none text-black">
             <div class="d-flex align-items-center gap-3">
               <img src="{{ company.company_image.url}}"  class="rounded-3 avatar" />
-              <h5>{{certificate.name}}</h5>
+              <h5>{{company.name}}</h5>
             </div>
             </a>
             
@@ -52,6 +52,57 @@
           {% endfor %}
         </div>
         
+        
+        <div class="col">
+            <h3>Corses</h3>
+            {% for course in major_detail.courses.all %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
+            <a href="{% url 'courses:detail_course_view' course.id %}" class="text-decoration-none text-black">
+            <div class="d-flex align-items-center gap-3">
+              <img src="{{ course.course_image.url}}"  class="rounded-3 avatar" />
+              <h5>{{course.name}}</h5>
+            </div>
+            </a>
+            
+            <a href="{% url 'courses:remove_course_major_view' major_detail.id course.id %}" class="btn btn-danger">remove</a>
+          
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+            <h3>Job Titles</h3>
+            {% for job in major_detail.jobs.all %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
+            <a href="{% url 'jobs:detail_job_view' job.id %}" class="text-decoration-none text-black">
+            <div class="d-flex align-items-center gap-3">
+              <h5>{{job.name}}</h5>
+              
+            </div>
+            </a>
+            
+            <a href="{% url 'jobs:remove_job_major_view' major_detail.id job.id %}" class="btn btn-danger">remove</a>
+          
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="col">
+            <h3>Skill</h3>
+            {% for skill in major_detail.skills.all %}
+          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
+            <a href="{% url 'skills:detail_skill_view' skill.id %}" class="text-decoration-none text-black">
+            <div class="d-flex align-items-center gap-3">
+              <h5>{{skill.name}}</h5>
+              
+            </div>
+            </a>
+            
+            <a href="{% url 'skills:remove_skill_major_view' major_detail.id skill.id %}" class="btn btn-danger">remove</a>
+          
+          </div>
+          {% endfor %}
+        </div>
   
       </section>
     <div class="d-flex justify-content-end m-2">
@@ -64,6 +115,9 @@
               <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete major</a></li>
               <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCertificate">Add Certificate</a></li>
               <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCompany">Add Companies</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCourse">Add Course</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalJob">Add Job</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalSkill">Add Skill</a></li>
             </ul>
             
           </div>
@@ -129,6 +183,79 @@
                 <h5>{{ company.name}}</h5>
              </div>
               <a href="{% url 'companies:add_company_major_view' major_detail.id company.id %}" class="btn btn-primary">Add</a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ModalCourse" tabindex="-1" aria-labelledby="ModalCourse" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ModalCourse">Course</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for course in courses %}
+            <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
+              <div class="d-flex align-items-center gap-3">
+                <img src="{{course.course_image.url}}"  class="rounded-3 avatar" />
+                <h5>{{ course.name}}</h5>
+             </div>
+              <a href="{% url 'courses:add_course_major_view' major_detail.id course.id %}" class="btn btn-primary">Add</a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ModalJob" tabindex="-1" aria-labelledby="ModalJob" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ModalJob">Job</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for job in jobs %}
+            <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
+              <div class="d-flex align-items-center gap-3">
+                <h5>{{ job.name}}</h5>
+             </div>
+              <a href="{% url 'jobs:add_job_major_view' major_detail.id job.id %}" class="btn btn-primary">Add</a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="ModalSkill" tabindex="-1" aria-labelledby="ModalSkill" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="ModalSkill">Skill</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% for skill in skills %}
+            <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
+              <div class="d-flex align-items-center gap-3">
+                <h5>{{ skill.name}}</h5>
+             </div>
+              <a href="{% url 'skills:add_skill_major_view' major_detail.id skill.id %}" class="btn btn-primary">Add</a>
             </div>
           {% endfor %}
         </div>

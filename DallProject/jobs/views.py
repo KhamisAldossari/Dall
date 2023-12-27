@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 from .models import Job
+from majors.models import Major
 
 # Create your views here.
 
@@ -46,7 +47,12 @@ def delete_job_view(request:HttpRequest,job_id):
     return render(request, 'jobs/detail_job.html',{"msg":msg})
 def job_home_view(request:HttpRequest):
     try:
-        view_job=Job.objects.all()
+
+        if "search" in request.GET:
+            keyword =request.GET.get("search")
+            view_job = Job.objects.filter(name__contains=keyword)
+        else:
+            view_job=Job.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'jobs/job_home.html',{'view_job':view_job})
@@ -58,3 +64,26 @@ def detail_job_view(request:HttpRequest,job_id):
         return render(request, "main/not_found.html", status=401)
     return render(request, 'jobs/detail_job.html',{"job_detail":job_detail})
     
+def add_job_major_view(request:HttpRequest, major_id, job_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    job = Job.objects.get(id=job_id) 
+    major.jobs.add(job) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
+
+def remove_job_major_view(request:HttpRequest, major_id, job_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    job = Job.objects.get(id=job_id) 
+    major.jobs.remove(job) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
