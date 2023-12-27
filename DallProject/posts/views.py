@@ -55,14 +55,14 @@ def post_update(request, post_id):
             action = request.POST.get('action')
             if action == 'edit':
                 post.save()
-                return redirect('posts:post_detail', id=post.id)
+                return redirect('posts:post_detail', post_id)
             
             elif action == 'delete':
                 post.delete()
                 return redirect('posts:post_list')
             
             post.save()
-            return redirect('main:post_detail', id=post.id)
+            return redirect('posts:post_detail', post_id)
         return render(request, 'posts/post_update.html', {'post': post})
     except Exception as e:
         msg= f"An error occured ! ({e})"

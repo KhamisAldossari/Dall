@@ -1,5 +1,11 @@
 {% extends 'main/base.html' %}
 {% block title %} All Skills {% endblock %}
+{% block search %}
+                  <form class="d-flex" role="search" method="get" action="{%url 'skills:skill_home_view' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                  {% endblock %}
 {% block content %} 
 
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Skills</h2>

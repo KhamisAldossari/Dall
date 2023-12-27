@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest,HttpResponse
 from .models import Skill
+from majors.models import Major
 
 # Create your views here.
 
@@ -42,7 +43,11 @@ def delete_skill_view(request:HttpRequest,skill_id):
     return render(request, 'skills/detail_skill.html',{"msg":msg})
 def skill_home_view(request:HttpRequest):
     try:
-        view_skill=Skill.objects.all()
+        if "search" in request.GET:
+            keyword =request.GET.get("search")
+            view_skill = Skill.objects.filter(name__contains=keyword)
+        else:
+            view_skill=Skill.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'skills/skill_home.html',{'view_skill':view_skill})
@@ -53,4 +58,28 @@ def detail_skill_view(request:HttpRequest,skill_id):
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request, 'skills/detail_skill.html',{"skill_detail":skill_detail})
+
+def add_skill_major_view(request:HttpRequest, major_id, skill_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    skill = Skill.objects.get(id=skill_id) 
+    major.skills.add(skill) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
+
+def remove_skill_major_view(request:HttpRequest, major_id, skill_id):
+
+    #if not request.user.has_perm("actors.add_actor"):
+        #return render(request, 'main/not_authorized.html')
+    
+    
+    major =Major.objects.get(id=major_id) 
+    skill = Skill.objects.get(id=skill_id) 
+    major.skills.remove(skill) 
+
+    return redirect("majors:detail_major_view", major_id=major_id)
     

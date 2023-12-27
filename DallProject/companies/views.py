@@ -57,8 +57,12 @@ def delete_company_view(request:HttpRequest,company_id):
     return render(request, 'companies/detail_company.html',{"msg":msg})
 def company_home_view(request:HttpRequest):
     try:
-        #view_company=company.objects.all()
-        view_company=Company.objects.all()
+        if "search" in request.GET:
+            keyword =request.GET.get("search")
+            view_company = Company.objects.filter(name__contains=keyword)
+        else:
+            
+            view_company=Company.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
     return render(request , 'companies/company_home.html',{'view_company':view_company})
