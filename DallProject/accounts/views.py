@@ -59,12 +59,13 @@ def logout_user_view(request: HttpRequest):
 
 
 def user_profile_view(request: HttpRequest, user_id):
-
+    msg=None
     try:
 
         user = UserProfile.objects.get(user=User.objects.get(id=user_id))
 
-    except:
+    except Exception as e :
+        msg= f'something went wrong {e}'
         return render(request, 'main/not_found.html')
     
 
