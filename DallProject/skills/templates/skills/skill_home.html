@@ -7,8 +7,11 @@
                   </form>
                   {% endblock %}
 {% block content %} 
-
+{% if keyword %}
+<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Skills</h2>
+{% else %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Skills</h2>
+{% endif %}
 
 <div class="container-fluid mt-5">
   <div class="row  h-100">

@@ -9,9 +9,10 @@ def add_job_view(request:HttpRequest):
     msg=None
     try:
         if request.method == "POST":
-            new_job= Job(name=request.POST["name"],
-                                    description=request.POST["description"],
-                                    )
+            new_job= Job(
+            name=request.POST["name"],
+            description=request.POST["description"],
+            )
             new_job.save()
             return redirect('jobs:job_home_view')
     except Exception as e:
@@ -45,9 +46,10 @@ def delete_job_view(request:HttpRequest,job_id):
     except Exception as e:
          msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request, 'jobs/detail_job.html',{"msg":msg})
+
 def job_home_view(request:HttpRequest):
     try:
-
+        keyword=None
         if "search" in request.GET:
             keyword =request.GET.get("search")
             view_job = Job.objects.filter(name__contains=keyword)
@@ -55,7 +57,8 @@ def job_home_view(request:HttpRequest):
             view_job=Job.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
-    return render(request , 'jobs/job_home.html',{'view_job':view_job})
+    return render(request , 'jobs/job_home.html',{'view_job':view_job, 'keyword':keyword})
+
 def detail_job_view(request:HttpRequest,job_id):
     
     try:
