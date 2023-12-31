@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -62,27 +62,26 @@ def logout_user_view(request: HttpRequest):
 def user_profile_view(request: HttpRequest, user_id):
     msg=None
     try:
+    # Use get_object_or_404 for cleaner handling of non-existent objects
+        user = get_object_or_404(UserProfile, user__id=user_id)
+        user_posts = Post.objects.filter(post_user=user.user)
 
-        user = UserProfile.objects.get(user=User.objects.get(id=user_id))
-        user_posts=Post.objects.filter(post_user=user.user)
-        follwing= UserProfile.objects.filter()
-        is_following=None
+        # Optimize following list retrieval
+        following = [profile.user for profile in UserProfile.objects.all() if user.user in profile.followers.all()]
+
+        # Simplify is_following check
+        is_following = user.followers.filter(id=request.user.id).exists()
+
         followers = user.followers.all()
-        for follower in followers:
-            if follower == request.user:
-                is_following = True
-                break
-            else:
-                is_following = False
-        number_of_followers = len(followers)
-        
-        
+        number_of_followers = followers.count()
+
+            
     except Exception as e :
         msg= f'something went wrong {e}'
         return render(request, 'main/not_found.html',{'msg':msg})
     
     
-    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers})
+    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers, 'following':following})
 
 def add_follower(request:HttpRequest, user_id):
         
