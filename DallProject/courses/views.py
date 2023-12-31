@@ -62,6 +62,7 @@ def delete_course_view(request:HttpRequest,course_id):
     return render(request, 'courses/detail_course.html',{"msg":msg})
 def course_home_view(request:HttpRequest):
     try:
+        keyword=None
         if "search" in request.GET:
             keyword =request.GET.get("search")
             view_course = Course.objects.filter(name__contains=keyword)
@@ -70,7 +71,7 @@ def course_home_view(request:HttpRequest):
             view_course=Course.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
-    return render(request , 'courses/course_home.html',{'view_course':view_course})
+    return render(request , 'courses/course_home.html',{'view_course':view_course , 'keyword':keyword})
 def detail_course_view(request:HttpRequest,course_id):
     
     try:
