@@ -65,6 +65,7 @@ def user_profile_view(request: HttpRequest, user_id):
 
         user = UserProfile.objects.get(user=User.objects.get(id=user_id))
         user_posts=Post.objects.filter(post_user=user.user)
+        follwing= UserProfile.objects.filter()
         is_following=None
         followers = user.followers.all()
         for follower in followers:
