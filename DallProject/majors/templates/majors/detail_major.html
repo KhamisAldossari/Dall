@@ -10,9 +10,9 @@
     <div class="clearfix">
       
       <img src="{{ major_detail.image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3 rounded-circle" style="width: 10rem; height: 10rem; object-fit: cover;" alt="...">
-    <h1 class="major-title border-bottom m-3 rounded" style="background-color: rgb(29, 134, 187); width: 35rem;">{{ major_detail.name }} {% if not is_favored %} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}"><span class="material-symbols-outlined">
+    <h1 class="major-title border-bottom m-3 rounded" style="background-color: rgb(29, 134, 187); width: 35rem;">{{ major_detail.name }} {% if not is_favored %} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}"><span class="material-symbols-outlined" style="color: black;">
       add
-      </span></a> {%else%} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}" ><span class="material-symbols-outlined" >
+      </span></a> {%else%} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}" ><span class="material-symbols-outlined" style="color: black;">
         done
         </span></a> {%endif%}</h1>
     <p class="major-description border-bottom rounded m-3 " style=" width: 35rem;">{{ major_detail.description }}</p>
@@ -40,8 +40,8 @@
           {% endfor %}
         </div>
 
-        <div class="col border rounded">
-            <h3 class="border-bottom">Companies:</h3>
+        <div class="col">
+            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Companies:</h3>
             {% for company in major_detail.companies.all %}
           <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
             <a href="{% url 'companies:detail_company_view' company.id %}" class="text-decoration-none text-black">
@@ -59,8 +59,8 @@
         </div>
         
         
-        <div class="col border rounded">
-            <h3 class="border-bottom">Corses:</h3>
+        <div class="col">
+            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Corses:</h3>
             {% for course in major_detail.courses.all %}
           <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
             <a href="{% url 'courses:detail_course_view' course.id %}" class="text-decoration-none text-black">
@@ -76,8 +76,8 @@
           {% endfor %}
         </div>
 
-        <div class="col border rounded">
-            <h3 class="border-bottom">Job Titles:</h3>
+        <div class="col">
+            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Job Titles:</h3>
             {% for job in major_detail.jobs.all %}
           <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
             <a href="{% url 'jobs:detail_job_view' job.id %}" class="text-decoration-none text-black">
@@ -95,8 +95,8 @@
           {% endfor %}
         </div>
 
-        <div class="col border rounded">
-            <h3 class="border-bottom">Skill:</h3>
+        <div class="col ">
+            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Skill:</h3>
             {% for skill in major_detail.skills.all %}
           <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
             <a href="{% url 'skills:detail_skill_view' skill.id %}" class="text-decoration-none text-black">
