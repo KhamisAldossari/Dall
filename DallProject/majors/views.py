@@ -57,7 +57,7 @@ def delete_major_view(request:HttpRequest,major_id):
     return render(request, 'majors/detail_major.html',{"msg":msg})
 def major_home_view(request:HttpRequest):
     try:
-
+        keyword=None
         if "search" in request.GET:
             keyword =request.GET.get("search")
             view_major = Major.objects.filter(name__contains=keyword)
