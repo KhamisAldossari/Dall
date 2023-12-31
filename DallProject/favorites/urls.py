@@ -3,4 +3,6 @@ from . import views
 
 app_name = "favorites"
 
-urlpatterns =[]
+urlpatterns =[
+    path('<major_id>/add/', views.add_favorite_view, name="add_favorite_view"),
+    ]

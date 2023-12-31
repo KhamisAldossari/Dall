@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     major = models.CharField(max_length=100, blank= True, null=True)
     degree = models.CharField(max_length=100, blank= True, null=True)
     university_name = models.CharField(max_length=100, blank=True, null=True)
+    followers = models.ManyToManyField(User, blank=True, related_name='followers')
 
 
     def __str__(self):

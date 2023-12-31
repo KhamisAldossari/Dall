@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from replies.models import Reply
+from django.http import HttpRequest, HttpResponse
 # Create your views here.
 
 
@@ -19,7 +20,7 @@ def post_list(request):
         msg = f"An error occured,  {e}"
         return render(request, 'main/not_found.html', {'msg':msg})
 
-def post_create(request):
+def post_create(request:HttpRequest):
     msg=None
     try:
         if request.method == "POST":
@@ -28,6 +29,9 @@ def post_create(request):
             content=request.POST["content"],
             post_user=request.user,
             )
+            if 'image' in request.FILES:
+                new_post.post_image=request.FILES["post_image"]
+                new_post.video=request.FILES["video"]
             new_post.save()
             return redirect('posts:post_list')
     except Exception as e:

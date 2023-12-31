@@ -7,15 +7,16 @@
 <section class="container mt-5  d-flex justify-content-center align-middle">
 
 
-  {% if msg %}
-      <div class="alert alert-danger" role="alert">
-      {{ msg }}
-      </div>
-  {% endif %}
+ 
   <div class="row">
+   
     <h1 class="d-flex justify-content-center">Register New User</h1>
       <div class="col-12">
-
+        {% if msg %}
+        <div class="alert alert-danger" role="alert">
+        {{ msg }}
+        </div>
+    {% endif %}
           <form class="d-flex flex-column gap-1" action="{% url 'accounts:register_user_view' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
 

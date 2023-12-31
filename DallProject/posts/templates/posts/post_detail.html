@@ -5,19 +5,26 @@
 
 {% block content %}
     <article>
-        <div class="d-flex flex-column gap-2">
-            <h5> {{ post.post_user }}</h5>
-            <h6 class="text-muted">Published on: {{ post.date_posted }}</h6>
-            <h3>{{post.title}}</h3>
-            <p>{{ post.content }}</p>
-            <a href="{% url 'posts:post_update' post.id %}">Edit Post</a>
-        </div>
-       <section class="row mt-3">
-            <h2>Replies: </h2>
-            <div class="col mt-2">
+        <div class="col d-flex justify-content-center m-5">
+            <div class="card shadow-sm w-75 d-flex">
+              <img src="{{post.post_image.url}}" class="bd-placeholder-img card-img-top" style="width:100%; height:30rem ;object-fit: cover;"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
+              <div class="card-body">
+                <h5> {{ post.post_user }}</h5>
+                <h3>{{post.title}}</h3>
+                <p class="card-text">{{ post.content }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                   <a href="{% url 'posts:post_update' post.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">Edit</button></a>
+                  </div>
+                  <small class="text-body-secondary">{{ post.date_posted }}</small>
+                </div>
+                <hr/>
+                <div class="mt-5 mb-5">
+                <h2 class="mb-3 border-bottom rounded">Replies: </h2>
+            <div class="col mt-2 ">
                 <div class="d-flex flex-column gap-2">
                  {% for r in replies %}
-                    <div class="d-flex flex-column gap-2 border border-1 p-3">
+                    <div class="d-flex flex-column gap-2 border border-1 rounded p-3">
                         <h5> {{ r.reply_user }}</h5>
                         <h6 class="text-muted">Created At: {{ r.date_posted }}</h6>
                         <h4> {{ r.title }}</h4>
@@ -25,9 +32,10 @@
                     </div>
                  {% endfor %}
                 </div>
-            </div>
-            {% if request.user.is_authenticated %}
-            <h2>Add your reply: </h2>
+            <hr/>
+                <div class="mt-5 mb-5">
+                {% if request.user.is_authenticated %}
+            <h2 class="mb-3 border-bottom rounded">Add your reply: </h2>
 
 
             <form class="d-flex flex-column gap-2" action="{% url 'replies:add_reply' post.id  %}" method="POST">
@@ -37,10 +45,13 @@
                 {% csrf_token %}
                 <input type="text" class="form-control" name="title"  placeholder="reply title"  required="">  
                 <textarea class="form-control" name="content" placeholder="reply content" required=""></textarea>
-                <input type="submit" value="Add Reply" class="btn btn-primary" />
+                <input type="submit" value="Add Reply" class="btn btn-primary w-25"  />
               </form>
             {% endif %}
-
-        </section>
+                </div>
+        
+              </div>
+            </div>
+          </div>
     </article>
 {% endblock %}

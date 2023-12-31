@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from .models import UserProfile
+from posts.models import Post
 
 # Create your views here.
 
@@ -63,15 +64,36 @@ def user_profile_view(request: HttpRequest, user_id):
     try:
 
         user = UserProfile.objects.get(user=User.objects.get(id=user_id))
-
+        user_posts=Post.objects.filter(post_user=user.user)
+        is_following=None
+        followers = user.followers.all()
+        for follower in followers:
+            if follower == request.user:
+                is_following = True
+                break
+            else:
+                is_following = False
+        number_of_followers = len(followers)
+        
+        
     except Exception as e :
         msg= f'something went wrong {e}'
-        return render(request, 'main/not_found.html')
+        return render(request, 'main/not_found.html',{'msg':msg})
     
+    
+    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers})
 
-    return render(request, 'accounts/profile.html', {"user":user})
-
-
+def add_follower(request:HttpRequest, user_id):
+        
+            profile = UserProfile.objects.get(id=user_id)
+            profile.followers.add(request.user)
+            return redirect('accounts:user_profile_view',user_id=profile.user.id)
+        
+def remove_follower(request:HttpRequest, user_id):
+        
+            profile = UserProfile.objects.get(id=user_id)
+            profile.followers.remove(request.user)
+            return redirect('accounts:user_profile_view',user_id=profile.user.id)
 
 def update_user_view(request: HttpRequest):
     msg = None
