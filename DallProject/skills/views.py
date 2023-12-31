@@ -43,6 +43,7 @@ def delete_skill_view(request:HttpRequest,skill_id):
     return render(request, 'skills/detail_skill.html',{"msg":msg})
 def skill_home_view(request:HttpRequest):
     try:
+        keyword=None
         if "search" in request.GET:
             keyword =request.GET.get("search")
             view_skill = Skill.objects.filter(name__contains=keyword)
@@ -50,7 +51,7 @@ def skill_home_view(request:HttpRequest):
             view_skill=Skill.objects.all()
     except:
         return render(request, "main/not_found.html", status=401)
-    return render(request , 'skills/skill_home.html',{'view_skill':view_skill})
+    return render(request , 'skills/skill_home.html',{'view_skill':view_skill, 'keyword':keyword})
 def detail_skill_view(request:HttpRequest,skill_id):
     
     try:

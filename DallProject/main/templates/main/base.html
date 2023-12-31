@@ -55,8 +55,7 @@
                         account
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
-                        <li><a class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
+                        {% if user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
                       </ul>
