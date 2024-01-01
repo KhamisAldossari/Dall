@@ -6,90 +6,301 @@
     <title>{% block title %}{% endblock %}</title>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/static/css/style.css" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"/>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+    <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/browser.min.js"></script>
+        <script src="/static/js/breakpoints.min.js"></script>
+        <script src="/static/js/util.js"></script>
+        <script src="/static/js/main.js"></script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     {% block head %}
     {% endblock %}
 
 </head>
-    <body >
-        <div class="container">
-            <div id="mainNavigation">
-              <div class="navbar-expand-md">
-                <div class="navbar d-flex align-middle justify-content-center text-center my-2">
-                  <button class="navbar-toggler w-75" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" ></span> <span class="align-middle">Menu</span>
-                  </button>
-                </div>
-                <div class="text-center  collapse navbar-collapse" id="navbarNavDropdown">
-                  <img src="/static/images/bright_close.png" alt="logo" class="invert" style="max-width: 10%";/>
-                  <ul class="navbar-nav mx-auto ">
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'main:home_view' %} ">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        manage
-                      </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                     
-                      <li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
-                      <li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
-                      <li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
-                      <li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
-                      <li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
-                      <li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
-                      
-              
-                      
-                    </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        account
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {% if user.is_authenticated %}
-                        <li><a class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
-                      </ul>
-                    </li>
-                    
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      browse
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" href="{% url 'majors:major_home_view' %}">majors</a></li>
-                      <li><a class="dropdown-item" href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
-                      <li><a class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
-                      <li><a class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
-                      <li><a class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
-                      <li><a class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
+<body>
+  <style>#header-wrapper {
+		background-image: -moz-linear-gradient(top, #008dab, #007294);
+		background-image: -webkit-linear-gradient(top, #008dab, #007294);
+		background-image: -ms-linear-gradient(top, #008dab, #007294);
+		background-image: linear-gradient(top, #008dab, #007294);
+		background-color: #007294;
+	}
 
-                    </ul>
-                  </li>
+	#header {
+		background-image: -moz-linear-gradient(top, #008ead, #007b9d);
+		background-image: -webkit-linear-gradient(top, #008ead, #007b9d);
+		background-image: -ms-linear-gradient(top, #008ead, #007b9d);
+		background-image: linear-gradient(top, #008ead, #007b9d);
+		-moz-box-sizing: content-box;
+		-webkit-box-sizing: content-box;
+		-ms-box-sizing: content-box;
+		box-sizing: content-box;
+		position: relative;
+		margin: 2.5% 0 2.5% 0;
+		padding: 0 40px 0 40px;
+		border-radius: 10px;
+		border: solid 1px #006e8b;
+		box-shadow: inset 0px 0px 0px 1px #12a0bf, 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+		background-color: #007b9d;
+		height: 86px;
+		
+		
+		
+	}
+
+		#header h1 {
+			position: relative;
+			left: 40px;
+			top: 0;
+			color: #fff;
+			font-size: 2.4em;
+			letter-spacing: -2px;
+			line-height: 86px;
+		}
+
+			#header h1 a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+		#header nav {
+			position:relative ;
+			justify-content:flex-end;
+			right: 40px;
+			top: 1px;
+			line-height: 84px;
+			text-transform: uppercase;
+			font-size: 1rem;
+			letter-spacing: -1px;
+			width: 100%;
+			
+		}
+
+			#header nav a  {
+				display: inline;
+				justify-content:center;
+				text-decoration: none;
+				color: #fff;
+				padding: 0 5px 0 5px;
+				
+			}
+			
+			
+				#header nav a.current-page-item  {
+					background-image: -moz-linear-gradient(top, #007b99, #007897);
+					background-image: -webkit-linear-gradient(top, #007b99, #007897);
+					background-image: -ms-linear-gradient(top, #007b99, #007897);
+					background-image: linear-gradient(top, #007b99, #007897);
+					background-color: #007897;
+					box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.1), 0px 0px 5px 1px rgba(255, 255, 255, 0.1);
+				}
+
+				#header nav a:hover {
+					background-image: -moz-linear-gradient(top, #0782a0, #077d9b);
+					background-image: -webkit-linear-gradient(top, #0782a0, #077d9b);
+					background-image: -ms-linear-gradient(top, #0782a0, #077d9b);
+					background-image: linear-gradient(top, #0782a0, #077d9b);
+					background-color: #0882a1;
+					box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.05), 0px 0px 5px 1px rgba(255, 255, 255, 0.05);
+				}
+				#header nav form {
+					display: inline;
+					justify-content:end;
+					text-decoration: none;
+					color: #fff;
+					padding: 0 5px 0 5px;
+					
+				}
+				
+				
+					#header nav form.current-page-item  {
+						background-image: -moz-linear-gradient(top, #007b99, #007897);
+						background-image: -webkit-linear-gradient(top, #007b99, #007897);
+						background-image: -ms-linear-gradient(top, #007b99, #007897);
+						background-image: linear-gradient(top, #007b99, #007897);
+						background-color: #007897;
+						box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.1), 0px 0px 5px 1px rgba(255, 255, 255, 0.1);
+					}
+	
+					#header nav form:hover {
+						background-image: -moz-linear-gradient(top, #0782a0, #077d9b);
+						background-image: -webkit-linear-gradient(top, #0782a0, #077d9b);
+						background-image: -ms-linear-gradient(top, #0782a0, #077d9b);
+						background-image: linear-gradient(top, #0782a0, #077d9b);
+						background-color: #0882a1;
+						box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.05), 0px 0px 5px 1px rgba(255, 255, 255, 0.05);
+					}
+          /* Footer */
+
+	#footer-wrapper {
+		padding: 4em 0;
+	}
+          </style>
+<div id="page-wrapper">
+
+  <!-- Header -->
+    <div id="header-wrapper">
+      <div class="container mt-5">
+        <div class="row w-100">
+          
+
+            <header id="header">
+              
+              <nav id="nav">
+                
+                <a href="{%url 'main:home_view' %}" id="logo"><img src="/static/images/bright.png" alt="logo" class="invert" style="max-width: 15%;";/></a>
+                <a href="{%url 'main:home_view' %}" class="current-page-item">Homepage</a>
+                <a href="twocolumn1.html">Two Column #1</a>
+                <a href="twocolumn2.html">Two Column #2</a>
+                <a href="onecolumn.html">One Column</a>
+                
+                <a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
+                <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  account
+                  </a>
+                  <ul style="padding: 0; margin: 0;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  
+                    {% if request.user.is_authenticated %}
+                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
+                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
+                    {% else %}
+                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
+                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
+                    {% endif %}
+
+                  </ul>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  browse
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'majors:major_home_view' %}">majors</a></li>
+                  <li><a class="dropdown-item" href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
+                  <li><a class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
+                  <li><a class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
+                  <li><a class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
+                  <li><a class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
+        
+                  </ul>
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    manage
+                  </a>
+                  <form class=" d-inline-flex" role="search" method="get" action="{%url 'majors:major_home_view' %}">
+                    <input style="width: 8rem" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+               
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   
+                  <li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
+                  <li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
+                  <li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
+                  <li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
+                  <li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
+                  <li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
+                  
+              
                   
                   </ul>
-                  
-                  {% block search %}
-                  
-                  {% endblock %}
-                </div>
-              </div>
-            </div>
-          </div>
         
+                  
+              </nav>
+              
+            </header>
+        </div></div></div></div>
 
-
+      
         {% block content %}
+
+
         {% endblock %}
-    </body>
+</body>
+        <div id="footer-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-8 col-12-medium">
+
+								<section>
+									<h2>How about a truckload of links?</h2>
+									<div>
+										<div class="row">
+											<div class="col-3 col-6-medium col-12-small">
+												<ul class="link-list">
+													<li><a href="#">Sed neque nisi consequat</a></li>
+													<li><a href="#">Dapibus sed mattis blandit</a></li>
+													<li><a href="#">Quis accumsan lorem</a></li>
+													<li><a href="#">Suspendisse varius ipsum</a></li>
+													<li><a href="#">Eget et amet consequat</a></li>
+												</ul>
+											</div>
+											<div class="col-3 col-6-medium col-12-small">
+												<ul class="link-list">
+													<li><a href="#">Quis accumsan lorem</a></li>
+													<li><a href="#">Sed neque nisi consequat</a></li>
+													<li><a href="#">Eget et amet consequat</a></li>
+													<li><a href="#">Dapibus sed mattis blandit</a></li>
+													<li><a href="#">Vitae magna sed dolore</a></li>
+												</ul>
+											</div>
+											<div class="col-3 col-6-medium col-12-small">
+												<ul class="link-list">
+													<li><a href="#">Sed neque nisi consequat</a></li>
+													<li><a href="#">Dapibus sed mattis blandit</a></li>
+													<li><a href="#">Quis accumsan lorem</a></li>
+													<li><a href="#">Suspendisse varius ipsum</a></li>
+													<li><a href="#">Eget et amet consequat</a></li>
+												</ul>
+											</div>
+											<div class="col-3 col-6-medium col-12-small">
+												<ul class="link-list">
+													<li><a href="#">Quis accumsan lorem</a></li>
+													<li><a href="#">Sed neque nisi consequat</a></li>
+													<li><a href="#">Eget et amet consequat</a></li>
+													<li><a href="#">Dapibus sed mattis blandit</a></li>
+													<li><a href="#">Vitae magna sed dolore</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</section>
+
+							</div>
+							<div class="col-4 col-12-medium">
+
+								<section>
+									<h2>Something of interest</h2>
+									<p>Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed.
+									Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet
+									mollis justo facilisis quis. Sed sagittis mauris amet tellus gravida
+									lorem ipsum dolor sit blandit.</p>
+									<footer class="controls">
+										<a href="#" class="button">Oh, please continue ....</a>
+									</footer>
+								</section>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+
+								<div id="copyright">
+									&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+		
+    
+        
+    
     
 </html>
+
+

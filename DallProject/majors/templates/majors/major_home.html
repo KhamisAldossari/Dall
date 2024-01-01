@@ -2,15 +2,16 @@
 {% block title %} All Majors {% endblock %}
 {% block search %}
                   <form class="d-flex" role="search" method="get" action="{%url 'majors:major_home_view' %}">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+                    <input style="width: 8rem" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
                   {% endblock %}
 {% block content %} 
+<div id="main">
 {% if keyword %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Majors</h2>
 {% else %}
-<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Majors</h2>
+<h2 class=" border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Majors</h2>
 {% endif %}
 <div class="container-fluid mt-5">
   <div class="row  h-100">
@@ -24,7 +25,9 @@
     {% endfor %}
   </div>
 </div>
+</div>
 
-  
+        
+
     
 {%endblock%}

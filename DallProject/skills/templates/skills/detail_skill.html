@@ -1,51 +1,62 @@
 {% extends 'main/base.html' %}
 {% block title %} Skill detail {% endblock %}
 {% block content %}
-<div class="container-fluid" style="margin-top: 5rem;">
-  {% if msg %}
-      <div class="alert alert-danger" role="alert">
-          {{ msg }}
-        </div>
-        {%endif%}
-    <div class="clearfix">
+<div id="main">
+  <div class="container">
+    <div class="row main-row">
+        {% if msg %}
+            <div class="alert alert-danger" role="alert">
+                {{ msg }}
+              </div>
+              {%endif%}
+      <div class="col-8 col-12-medium">
+
+        <section>
+          <h2>{{ skill_detail.name }}</h2>
+        </section>
+
+      </div>
+      <div class="col-4 col-12-medium">
+        <section>
+          
+          <div>
+            <div class="row">
+              <div class="col-6 col-12-small">
+                <div class="dropdown m-2">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Edit
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="{%url 'skills:update_skill_view'  skill_detail.id %}" class="dropdown-item" >Update skill</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete skill</a></li>
       
-      <img src="{{ skill_detail.skill_image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3 rounded-circle" style="width: 10rem; height: 10rem; object-fit: cover;" alt="...">
-    <h1 class="skill-title">{{ skill_detail.name }}</h1>
-
-    </div>
-    <div class="d-flex justify-content-end m-2">
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Edit
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="{%url 'skills:update_skill_view'  skill_detail.id %}" class="dropdown-item" >Update skill</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete skill</a></li>
-
-            </ul>
-            
-          </div>
-    
-
-          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete skill</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                 do you want to delete the skill {{ skill_detail.name }} ? click yes if yes
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <a href="{% url 'skills:delete_skill_view' skill_detail.id  %}" class="btn btn-danger">Yes, delete</a>
+                  </ul>
+                  
                 </div>
               </div>
             </div>
           </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
 </div>
-
-
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete skill</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       do you want to delete the skill {{ skill_detail.name }} ? click yes if yes
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'skills:delete_skill_view' skill_detail.id  %}" class="btn btn-danger">Yes, delete</a>
+      </div>
+    </div>
+  </div>
 </div>
 {%endblock%}

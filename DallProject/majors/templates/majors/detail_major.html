@@ -1,156 +1,147 @@
 {% extends 'main/base.html' %}
 {% block title %} Major detail {% endblock %}
 {% block content %}
-<div class="container-fluid " style="margin-top: 5rem; width: 50rem;">
-  {% if msg %}
-      <div class="alert alert-danger" role="alert">
-          {{ msg }}
-        </div>
-        {%endif%}
-    <div class="clearfix">
-      
-      <img src="{{ major_detail.image.url }}" class="col-md-6 float-md-end mb-3 ms-md-3 rounded-circle" style="width: 10rem; height: 10rem; object-fit: cover;" alt="...">
-    <h1 class="major-title border-bottom m-3 rounded" style="background-color: rgb(29, 134, 187); width: 35rem;">{{ major_detail.name }} {% if not is_favored %} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}"><span class="material-symbols-outlined" style="color: black;">
-      add
-      </span></a> {%else%} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}" ><span class="material-symbols-outlined" style="color: black;">
-        done
-        </span></a> {%endif%}</h1>
-    <p class="major-description border-bottom rounded m-3 " style=" width: 35rem;">{{ major_detail.description }}</p>
-    
-
-    </div>
-    <hr/>
-    <section class="row row-cols-12 row-cols-md-4 m-2">
-        
-  
-        <div class="col ">
-            <h3 class="border-bottom rounded mb-2" style="background-color: rgb(29, 134, 187);">Certificate:</h3>
-            {% for certificate in major_detail.certificates.all %}
-          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
-            <a href="{% url 'certificates:detail_certificate_view' certificate.id %}" class="text-decoration-none text-black">
-            <div class="d-flex align-items-center gap-3">
-              <img src="{{ certificate.certificate_image.url}}"  class="rounded-3 avatar" />
-              <h5 class="border-bottom">{{certificate.name}}</h5>
-            </div>
-            </a>
-            {% if request.user.is_staff %}
-            <a href="{% url 'certificates:remove_certificate_major_view' major_detail.id certificate.id %}" class="btn btn-danger">remove</a>
-             {%endif%}
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="col">
-            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Companies:</h3>
-            {% for company in major_detail.companies.all %}
-          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
-            <a href="{% url 'companies:detail_company_view' company.id %}" class="text-decoration-none text-black">
-            <div class="d-flex align-items-center gap-3">
-              <img src="{{ company.company_image.url}}"  class="rounded-3 avatar" />
-              <h5 class="border-bottom">{{company.name}}</h5>
-            </div>
-            </a>
-            {% if request.user.is_staff %}
-            <a href="{% url 'companies:remove_company_major_view' major_detail.id company.id %}" class="btn btn-danger">remove</a>
-             {%endif%}
-          </div>
-          {% endfor %}
-          
-        </div>
-        
-        
-        <div class="col">
-            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Corses:</h3>
-            {% for course in major_detail.courses.all %}
-          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
-            <a href="{% url 'courses:detail_course_view' course.id %}" class="text-decoration-none text-black">
-            <div class="d-flex align-items-center gap-3">
-              <img src="{{ course.course_image.url}}"  class="rounded-3 avatar" />
-              <h5 class="border-bottom">{{course.name}}</h5>
-            </div>
-            </a>
-            {% if request.user.is_staff %}
-            <a href="{% url 'courses:remove_course_major_view' major_detail.id course.id %}" class="btn btn-danger">remove</a>
-          {%endif%}
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="col">
-            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Job Titles:</h3>
-            {% for job in major_detail.jobs.all %}
-          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
-            <a href="{% url 'jobs:detail_job_view' job.id %}" class="text-decoration-none text-black">
-            <div class="d-flex align-items-center gap-3">
-              <h5 class="border-bottom"><span class="material-symbols-outlined">
-                wifi_1_bar
-                </span>{{job.name}}</h5>
-              
-            </div>
-            </a>
-            {% if request.user.is_staff %}
-            <a href="{% url 'jobs:remove_job_major_view' major_detail.id job.id %}" class="btn btn-danger">remove</a>
-          {%endif%}
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="col ">
-            <h3 class="border-bottom rounded" style="background-color: rgb(29, 134, 187);">Skill:</h3>
-            {% for skill in major_detail.skills.all %}
-          <div class="d-flex gap-2 justify-content-between align-items-center mb-1">
-            <a href="{% url 'skills:detail_skill_view' skill.id %}" class="text-decoration-none text-black">
-            <div class="d-flex align-items-center gap-3">
-              <h5 class="border-bottom"><span class="material-symbols-outlined">
-                wifi_1_bar
-                </span> {{skill.name}}</h5>
-              
-            </div>
-            </a>
-            {% if request.user.is_staff %}
-            <a href="{% url 'skills:remove_skill_major_view' major_detail.id skill.id %}" class="btn btn-danger">remove</a>
-          {%endif%}
-          </div>
-          {% endfor %}
-        </div>
-  
-      </section>
-    <div class="d-flex justify-content-end m-2">
-        <div class="dropdown m-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Edit
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="{%url 'majors:update_major_view'  major_detail.id %}" class="dropdown-item" >Update major</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete major</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCertificate">Add Certificate</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCompany">Add Companies</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCourse">Add Course</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalJob">Add Job</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalSkill">Add Skill</a></li>
-            </ul>
-            
-          </div>
-    
-
-          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Delete major</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <!-- Main -->
+				<div id="main">
+					<div class="container">
+						<div class="row main-row">
+              {% if msg %}
+              <div class="alert alert-danger" role="alert">
+                  {{ msg }}
                 </div>
-                <div class="modal-body">
-                 do you want to delete the major {{ major_detail.name }} ? click yes if yes
+                {%endif%}
+							<div class="col-3 col-12-medium">
+                
+								<section>
+									<h2>Skills</h2>
+                  {% for skill in major_detail.skills.all %}
+									<ul class="link-list">
+										<li><a href="{% url 'skills:detail_skill_view' skill.id %}">{{skill.name}}</a></li>
+										<li>{% if request.user.is_staff %}
+                      <a href="{% url 'skills:remove_skill_major_view' major_detail.id skill.id %}" class="btn btn-danger">remove</a>
+                    {%endif%}</li>
+									</ul>
+                  {%endfor%}
+								</section>
+                
+
+                <section>
+									<h2>Certificates</h2>
+                  {% for certificate in major_detail.certificates.all %}
+									<ul class="small-image-list">
+										<li>
+											<a href="{% url 'certificates:detail_certificate_view' certificate.id %}"><img src="{{certificate.certificate_image.url}}" alt="" class="left rounded" style="width: 5rem;height:5rem ;object-fit: cover;"/></a>
+											<a href="{% url 'certificates:detail_certificate_view' certificate.id %}"><h4>{{certificate.name}}</h4></a>
+											<p>Provider: {{certificates.provider}}</p>
+										</li>
+                    <li>{% if request.user.is_staff %}
+                      <a href="{% url 'certificates:remove_certificate_major_view' major_detail.id certificate.id %}" class="btn btn-danger">remove</a>
+                       {%endif%}</li>
+									</ul>
+                  {%endfor%}
+								</section>
+								
+
+							</div>
+							<div class="col-6 col-12-medium imp-medium">
+
+								<section class="middle-content">
+                  <div class="d-flex justify-content-between">
+									<h2>{{ major_detail.name }}</h2><p> Save {% if not is_favored %} <a href="{% url 'favorites:add_favorite_view' major_detail.id %}"><span class="material-symbols-outlined" style="color: black;">
+                    add
+                    </span></a> {%else%}<a href="{% url 'favorites:add_favorite_view' major_detail.id %}" ><span class="material-symbols-outlined" style="color: black; ">
+                      done
+                      </span></a> {%endif%}</p>
+                    </div>
+									<p>{{ major_detail.description }}</p>
+								</section>
+                {% if request.user.is_staff %}
+                <div class="dropdown m-2">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Edit
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="{%url 'majors:update_major_view'  major_detail.id %}" class="dropdown-item" >Update major</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete major</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCertificate">Add Certificate</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCompany">Add Companies</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalCourse">Add Course</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalJob">Add Job</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ModalSkill">Add Skill</a></li>
+                  </ul>
+                  
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <a href="{% url 'majors:delete_major_view' major_detail.id  %}" class="btn btn-danger">Yes, delete</a>
-                </div>
+                {%endif%}
+							</div>
+							<div class="col-3 col-12-medium">
+
+								<section>
+									<h2>Companies</h2>
+                  {% for company in major_detail.companies.all %}
+									<ul class="small-image-list">
+										<li>
+											<a href="{% url 'companies:detail_company_view' company.id %}"><img src="{{company.company_image.url}}" alt="" class="left rounded" style="width: 5rem;height:5rem ;object-fit: cover;"/></a>
+											<a href="{% url 'companies:detail_company_view' company.id %}"><h4>{{company.name}}</h4></a>
+											<p>Industry: {{company.industry}}</p>
+										</li>
+                    <li>{% if request.user.is_staff %}
+                      <a href="{% url 'companies:remove_company_major_view' major_detail.id company.id %}" class="btn btn-danger">remove</a>
+                       {%endif%}</li>
+									</ul>
+                  {%endfor%}
+								</section>
+                <section>
+									<h2>Job Titles</h2>
+                  {% for job in major_detail.jobs.all %}
+									<ul class="link-list">
+										<li><a href="{% url 'jobs:detail_job_view' job.id %}">{{job.name}}</a></li>
+										<li>{% if request.user.is_staff %}
+                      <a href="{% url 'jobs:remove_job_major_view' major_detail.id job.id %}" class="btn btn-danger">remove</a>
+                    {%endif%}</li>
+									</ul>
+                  {%endfor%}
+								</section>
+
+                
+								<section>
+									<h2>Courses</h2>
+                  {% for course in major_detail.courses.all %}
+									<ul class="small-image-list">
+										<li>
+											<a href="{% url 'courses:detail_course_view' course.id %}"><img src="{{course.course_image.url}}" alt="" class="left rounded" style="width: 5rem;height:5rem ;object-fit: cover;"/></a>
+											<a href="{% url 'courses:detail_course_view' course.id %}"><h4>{{coourse.name}}</h4></a>
+											<p>Provider: {{course.provider}}</p>
+                      <p>Duration: {{course.duration}}</p>
+										</li>
+                    <li>{% if request.user.is_staff %}
+                      <a href="{% url 'courses:remove_course_major_view' major_detail.id course.id %}" class="btn btn-danger">remove</a>
+                    {%endif%}</li>
+									</ul>
+                  {%endfor%}
+								</section>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete major</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+               do you want to delete the major {{ major_detail.name }} ? click yes if yes
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{% url 'majors:delete_major_view' major_detail.id  %}" class="btn btn-danger">Yes, delete</a>
               </div>
             </div>
           </div>
-
+        </div>
           <!-- Actors Modal -->
 
 <div class="modal fade" id="ModalCertificate" tabindex="-1" aria-labelledby="ModalCertificate" aria-hidden="true">
@@ -276,8 +267,8 @@
     </div>
   </div>
 
-</div>
 
 
-</div>
+
+
 {%endblock%}

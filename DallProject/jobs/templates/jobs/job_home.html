@@ -6,26 +6,33 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
                   {% endblock %}
-{% block content %} 
+{% block content %}
+<div id="main">
 {% if keyword %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Job titles </h2>
 {% else %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Job Titles</h2>
 {% endif %}
-
-<div class="container-fluid mt-5">
-  <div class="row  h-100">
-    {% for job in view_job %}
-      <div class="col-lg-4 h-100">
-        <a href="{% url 'jobs:detail_job_view' job.id  %}" class="text-decoration-none">
-        <h2 class="fw-normal">{{ job.name }}</h2></a>
-        <p>{{ job.description }}</p>
-        <p><a class="btn btn-secondary" href="{% url 'jobs:detail_job_view' job.id  %}">Discover »</a></p>
-      </div>
-    {% endfor %}
-  </div>
-</div>
-
   
-    
+    <!-- Main -->
+  
+    <div class="container">
+      <div class="row main-row">
+       {% for job in view_job %}
+        <div class="col-4 col-12-medium h-100">
+  
+          <section>
+            <a href="{%url 'jobs:detail_job_view' job.id %}"><h2>{{ job.name }}</h2></a>
+            <ul class="small-image-list">
+              <li>
+              
+                <p>{{ job.description }} </p>
+                
+              </li>
+            </ul>
+          </section>
+        </div>
+        {%endfor%}
+      </div></div></div></div>
+     
 {%endblock%}

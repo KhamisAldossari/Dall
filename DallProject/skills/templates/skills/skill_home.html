@@ -7,24 +7,33 @@
                   </form>
                   {% endblock %}
 {% block content %} 
+<div id="main">
 {% if keyword %}
+
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Skills</h2>
 {% else %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Skills</h2>
 {% endif %}
 
-<div class="container-fluid mt-5">
-  <div class="row  h-100">
-    {% for skill in view_skill %}
-      <div class="col-lg-4 h-100">
-        <a href="{% url 'skills:detail_skill_view' skill.id  %}" class="text-decoration-none">
-        <h2 class="fw-normal">{{ skill.name }}</h2></a>
-        <p><a class="btn btn-secondary" href="{% url 'skills:detail_skill_view' skill.id  %}">Discover »</a></p>
-      </div>
-    {% endfor %}
-  </div>
-</div>
 
-  
+
+<div class="container">
+  <div class="row main-row">
+   {% for skill in view_skill %}
+    <div class="col-4 col-12-medium h-100">
+
+      <section>
+        <a href="{%url 'skills:detail_skill_view' skill.id %}"><h2>{{ skill.name }}</h2></a>
+        <ul class="small-image-list">
+          <li>
+          
+            <p>{{ skill.description }} </p>
+            
+          </li>
+        </ul>
+      </section>
+    </div>
+    {%endfor%}
+  </div></div></div></div>
     
 {%endblock%}

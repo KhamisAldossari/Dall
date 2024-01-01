@@ -7,6 +7,7 @@
                   </form>
                   {% endblock %}
 {% block content %} 
+<div id="main">
 {% if keyword %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Certificates</h2>
 {% else %}
@@ -25,7 +26,6 @@
     {% endfor %}
   </div>
 </div>
+</div>
 
-  
-    
 {%endblock%}
