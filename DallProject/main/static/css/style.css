@@ -1,52 +1,421 @@
-* {
+
+
+
+  *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
+.header1 {
+    position:fixed;
+    z-index: 1;
+    top: 0;
+    max-width:  100%;
+    height: 2rem;
+    background-color: transparent;
+    transition: background-color 0.5s ease;
+  }
+  
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
+  
+ 
+  header.scrolled {
+    background-color: #ffffff; 
+  }
+
+ 
+  section {
+    height: 800px;
+  }
+  
+.style1{
+    padding-bottom: 20vh;
+    overflow-x: hidden;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);    
 }
 
-#mainNavigation a {
-    font-family: 'Cabin', sans-serif;
-    font-size:14px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    text-shadow:1px 1px 2px rgba(0,0,0,0.4)
+.base-div{
+    max-width: 100%;
+    margin-left: rem;
+    margin-right: rem;
+
+}
+.back2 {
+    
+    background-image: url('/static/images/saudi9.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    object-fit: cover;
+    
+    
   }
   
-  .dropdown-menu {
-    background:#b0dee5
+
+  .moving-h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: moveH1 5s linear infinite; 
   }
-  a.dropdown-toggle {
-    color:#111111 
+
+  .static-p {
+    text-align: center;
+    margin-top: 5rem;
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Oswald', sans-serif;
   }
+
+  @keyframes moveH1 {
+    0%, 100% {
+      transform: translate(-50%, -50%);
+    }
+    25% {
+      transform: translate(-50%, -60%);
+    }
+    50% {
+      transform: translate(-50%, -50%);
+    }
+    75% {
+      transform: translate(-50%, -40%);
+    }
+  }
+
+.logo{
+    font-size: 4rem;
+    
+    border-radius: 10%;
+    padding: 0.25rem;
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
+
+}
+.logo2{
+    margin-left: 1rem;
+    margin-bottom: 0.10rem;
+}
+.style_video{
+    position: relative;;
+    
+    margin-top: 5rem;
+    
+    margin-left: 7rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-radius: 1rem;
+}
+.border1{
+    margin-top: 20rem ;
+    width: 100%;
+}
+.border2{
+    margin-top: 1rem ;
+    width: 100%;
+}
+.f1{
+    background-color: rgba(255,255,255,0.5);
+}
+.style_video1{
+    margin-top: 5rem;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: rem;
+    opacity: 90%;
+    border-radius: 1.5rem;
+    margin-bottom: 5rem;
+    
+}
+.div1{
+    background-color: rgba(255,255,255,0);
+    background-position: center;
+    background-size: cover;
+}
+.card{
+    margin-bottom: 5.25rem;
+
+}
+
+.logo3{
+    margin-left: 2rem;
+    padding-top: 2rem;
+    color: aliceblue;
+    
+}
+.padding-footer-col{
+    padding-top: 2rem;
+    background-color: rgb(78, 76, 76);
+}
+.color-text-footer{
+    color: aliceblue;
+}
+
+.carousel-size{
+   margin: 5%; 
+   opacity: 90%;
+   
+   
+}
+.photo_size{
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 1rem;
   
-  a.dropdown-item:hover {
-    color:#fff 
-  }
-  .nav-item a{
-    color:#111111;
-  }
-  .nav-item a:hover {
-    color:#fff;
-    background: #b0dee5;
-  }
-  .nav-item{
-    min-width:12vw;
-  }
-  #mainNavigation {
-    top:0;
-    left:0;
-    width:100%;
-    padding-bottom:5px;
-  }
+}
+.photo_size11{
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: rem;
   
-  #navbarNavDropdown.collapsing .navbar-nav,
-  #navbarNavDropdown.show .navbar-nav{
-    background:#ffff;
-    padding:12px;
+}
+.back3{
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url('/static/images/riyadh2.webp');
+    
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    height: 40rem;
+    
+   
+    
+
+}
+.title-r{
+    background-image: url('/static/images/back-riyadh1.web');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    max-width: 20rem;
+    border-radius: 2rem;
+}
+.h1-rr{
+    color: whitesmoke;
+    text-align: center;
+    margin: 2rem 2rem 5rem 2rem;
+    font-style: oblique;
+    font-weight: bold;
+    font-size:xx-large;
+
+}
+.h1-r{
+    color: whitesmoke;
+    text-align: center;
+    margin: 2rem 2rem 2rem 2rem;
+    font-style: oblique;
+    font-weight: bold;
+    font-size:xx-large;
+    
+    
+}
+  
+.h3-b{
+    background-color: rgba(166, 204, 191, 0.808);
+    text-align: center;
+    margin: 2rem 2rem 2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 2rem 2rem 2rem 2rem rgba(0, 0, 0, 0.1);
+    
+}
+.p-b{
+    color: black;
+}
+  
+.back4{
+   
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url('/static/images/abha9.webp');
+    
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    height: 40rem;
+    
+
+}
+.t3-city1{
+    box-shadow: 0rem 8rem 3rem rgba(253, 252, 252, 0.8);
+    color: rgb(17, 16, 16);
+    font-family: 'Dancing Script', cursive;
+}
+
+.div-city2{
+    padding: 3rem 15rem 5rem 10rem;
+   
+}
+.h1-t-city2{
+    color: whitesmoke;
+    text-align: center;
+    margin: 2rem 2rem 5rem 2rem;
+    font-style: oblique;
+    font-weight: bold;
+    font-size:xx-large;
+    font-family: 'Dancing Script', cursive;
+}
+.p-t-city2{
+    color: whitesmoke;
+    text-align: center;
+    margin: 2rem 2rem 2rem 2rem;
+    font-style: oblique;
+    font-weight: bold;
+    font-size:xx-large;
+}
+.h2-t-city2{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    color: rgb(22, 22, 22);
+    
+    text-align: center;
+
+}
+.h2-t-city22{
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    color: rgb(22, 22, 22);
+    font-size: 2.5rem;
+    text-align: center;
+
+}
+.p-p2-city2{
+    font-size: 1.25rem;
+    font-weight: lighter;
+    color: rgba(39, 34, 34);
+    opacity: 95%;
+    text-align: center;
+    padding: 5%;
+
+}
+.city2-photo{
+    max-width: 100%;
+    max-height: 100%;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+}
+.back-city2{
+    background-color: rgba(239, 247, 204, 0.473);
+    border-radius: 1rem;
+    
+
+}
+.pb1{
+    padding-bottom: 2.25rem;
+}
+.back2-city2{
+    background-color: rgba(239, 247, 204, 0.473);
+    border-radius: 1rem;
+    
+
+    
+}
+.rectangle {
+    width: 100rem; 
+    height: 10.5rem; 
+    background-image: url('/static/images/abha6.jpg'); 
+    
+    
   }
+.rectangle1 {
+    width: 100rem; 
+    height: 5rem; 
+    background-image: url('/static/images/jeddah3.png'); 
+    background-repeat: no-repeat;
+    object-fit: cover;
+    box-shadow: 10rem 10rem 10rem 10rem rgba(0, 0, 0, 0.3); 
+    background-size: cover;
+    opacity: 65%;
+    
+    
+    
+  }
+.back5{
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url('/static/images/jeddah4.jpg');
+    
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    height: 40rem;
+}
+.back6{
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url('/static/images/alula5.jpg');
+    
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    height: 40rem;
+}
+.rectangle2 {
+    width: 100rem; 
+    height: 5rem; 
+    background-image: url('/static/images/alula6.jpg'); 
+    background-repeat: no-repeat;
+    object-fit: cover;
+    box-shadow: 10rem 10rem 10rem 10rem rgba(252, 213, 43, 0.3); 
+    background-size: cover;
+    opacity: 65%;
+    
+    
+  }
+  .rectangle3 {
+    width: 100rem; 
+    height: 10rem; 
+    background-image: url('/static/images/riyadh3.jpg'); 
+    background-repeat: no-repeat;
+    object-fit: cover;
+    box-shadow: 10rem 10rem 10rem 10rem rgba(151, 151, 148, 0.3); 
+    background-size: cover;
+    opacity: 65%;
+    background-position: center;
+    
+  }
+  .logo11 {
+    width: 100px;
+   padding-top: 1rem;
+
+   
+  }
+  .carousel-size1 {
+    width: 100%; 
+    height: auto; 
+}
+
+.modal-content1 {
+    width: 30rem; 
+    height: 30rem; 
+}
+.sub-style{
+    padding-top: 10rem;
+    
+    align-items: center;
+}
+.p-font{
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Oswald', sans-serif;
+}
+.p-font1{
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.75rem;
+}
+.p11{
+    padding: 5rem 17.5rem 17.5rem 17.5rem;
+}
+.h2-t-city223{
+    
+    margin-bottom: 5rem;
+    color: rgb(22, 22, 22);
+    font-size: 2.5rem;
+    text-align: center;
+
+}

@@ -1,23 +1,25 @@
 {% extends 'main/base.html' %}
 {% block title %} All companies {% endblock %}
 {% block search %}
-                  <form class="d-flex" role="search" method="get" action="{%url 'companies:company_home_view' %}">
+                  <form class="d-flex p-font" role="search" method="get" action="{%url 'companies:company_home_view' %}">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
                     <button class="btn btn-outline-dark" type="submit">Search</button>
                   </form>
                   {% endblock %}
 {% block content %} 
+<div id="main" class="p-font" style="margin-top: 10rem;margin-bottom: 5rem;">
 {% if keyword %}
-<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Companies </h2>
+
+<h2 class="pb-2 border-bottom d-flex justify-content-center p-font " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Companies </h2>
 {% else %}
-<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All companies</h2>
+<h2 class="pb-2 border-bottom d-flex justify-content-center p-font" style="margin-top: 5rem;">All companies</h2>
 {% endif %}
-<div id="main">
+
 <div class="container-fluid mt-5">
   <div class="row  h-100">
     {% for company in view_company %}
       <div class="col-lg-4 h-100">
-        <a href="{% url 'companies:detail_company_view' company.id  %}" class="text-decoration-none"><img src="{{ company.company_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+        <a href="{% url 'companies:detail_company_view' company.id  %}" class="text-decoration-none"><img src="{{ company.company_image.url }}" class="rounded-circle" style="height: 10rem;width: 10rem;  object-fit: cover;"></a>
         <h2 class="fw-normal">{{ company.name }}</h2>
         <p>{{ company.description }}</p>
         <p><a class="btn btn-secondary" href="{% url 'companies:detail_company_view' company.id  %}">Discover »</a></p>

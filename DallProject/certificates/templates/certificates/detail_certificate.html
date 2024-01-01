@@ -3,15 +3,15 @@
 {% block content %}
 
    
-<div id="main">
-  <div class="container">
-    <div class="row main-row">
+<div id="main" style="margin-top: 10rem;margin-bottom: 5rem;" class="p-font">
+  <div class="container ">
+    <div class="row">
         {% if msg %}
             <div class="alert alert-danger" role="alert">
                 {{ msg }}
               </div>
               {%endif%}
-      <div class="col-8 col-12-medium">
+      <div class="col">
 
         <section>
           <h2>{{ certificate_detail.name }}</h2>
@@ -19,37 +19,26 @@
         </section>
 
       </div>
-      <div class="col-4 col-12-medium">
+      <div class="col">
 
         <section>
           <h2>The Provider</h2>
-          <ul class="small-image-list">
-            <li>
-              <a href="#"><img src="{{ certificate_detail.certificate_image.url }}" alt="" class="left rounded " style="height: 3rem;width: 3rem;object-fit: cover;"/></a>
-              <h4 style="margin-top: 1rem;">{{ certificate_detail.provider }}</h4>
-            </li>
-          </ul>
-        </section>
-
-        <section>
           
-          <div>
-            <div class="row">
-              <div class="col-6 col-12-small">
-                <div class="dropdown m-2">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Edit
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="{%url 'certificates:update_certificate_view'  certificate_detail.id %}" class="dropdown-item" >Update Certificate</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete certificate</a></li>
-      
-                  </ul>
-                  
-                </div>
-              </div>
+            <div class="d-flex gap-2">
+              <a href="#"><img src="{{ certificate_detail.certificate_image.url }}" alt="" class="rounded d-flex" style="height: 3rem;width: 3rem;object-fit: cover;"/></a>
+              <h4 style="margin-top: 1rem;" >{{ certificate_detail.provider }}</h4>
             </div>
-          </div>
+            <div class="dropdown m-2 d-flex justify-content-end">
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Edit
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="{%url 'certificates:update_certificate_view'  certificate_detail.id %}" class="dropdown-item" >Update Certificate</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" >Delete certificate</a></li>
+  
+              </ul>
+              
+            </div>
         </section>
 
       </div>

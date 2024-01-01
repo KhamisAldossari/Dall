@@ -10,294 +10,172 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"/>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-		<link rel="stylesheet" href="/static/css/main.css" />
-    <script src="/static/js/jquery.min.js"></script>
-        <script src="/static/js/browser.min.js"></script>
-        <script src="/static/js/breakpoints.min.js"></script>
-        <script src="/static/js/util.js"></script>
-        <script src="/static/js/main.js"></script>
+		<link rel="stylesheet" href="/static/css/style.css" />
+		
+    
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     {% block head %}
     {% endblock %}
 
 </head>
+<script>
+window.addEventListener('scroll', function() {
+	var header = document.getElementById('main-header');
+	var scrollPosition = window.scrollY;
+
+	if (scrollPosition > 100) {
+	  header.classList.add('scrolled');
+	} else {
+	  header.classList.remove('scrolled');
+	}
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<i class="bi bi-person"></i>
+<i class="bi bi-person-check"></i>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@200&display=swap" rel="stylesheet">
+</head>
 <body>
-  <style>#header-wrapper {
-		background-image: -moz-linear-gradient(top, #008dab, #007294);
-		background-image: -webkit-linear-gradient(top, #008dab, #007294);
-		background-image: -ms-linear-gradient(top, #008dab, #007294);
-		background-image: linear-gradient(top, #008dab, #007294);
-		background-color: #007294;
-	}
-
-	#header {
-		background-image: -moz-linear-gradient(top, #008ead, #007b9d);
-		background-image: -webkit-linear-gradient(top, #008ead, #007b9d);
-		background-image: -ms-linear-gradient(top, #008ead, #007b9d);
-		background-image: linear-gradient(top, #008ead, #007b9d);
-		-moz-box-sizing: content-box;
-		-webkit-box-sizing: content-box;
-		-ms-box-sizing: content-box;
-		box-sizing: content-box;
-		position: relative;
-		margin: 2.5% 0 2.5% 0;
-		padding: 0 40px 0 40px;
-		border-radius: 10px;
-		border: solid 1px #006e8b;
-		box-shadow: inset 0px 0px 0px 1px #12a0bf, 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
-		background-color: #007b9d;
-		height: 86px;
+<div class="container header1" style="max-width: 100%;" >
+	<header  class="border-bottom  rounde " id="main-header" >
+	  <div class="row flex-nowrap justify-content-between align-items-center ">
 		
 		
-		
-	}
+		<div class="col-4 m- ">
+		  <img class="logo11" src="/static/images/bright_c.png" alt="logo"></img>
 
-		#header h1 {
-			position: relative;
-			left: 40px;
-			top: 0;
-			color: #fff;
-			font-size: 2.4em;
-			letter-spacing: -2px;
-			line-height: 86px;
-		}
-
-			#header h1 a {
-				color: #fff;
-				text-decoration: none;
-			}
-
-		#header nav {
-			position:relative ;
-			justify-content:flex-end;
-			right: 40px;
-			top: 1px;
-			line-height: 84px;
-			text-transform: uppercase;
-			font-size: 1rem;
-			letter-spacing: -1px;
-			width: 100%;
-			
-		}
-
-			#header nav a  {
-				display: inline;
-				justify-content:center;
-				text-decoration: none;
-				color: #fff;
-				padding: 0 5px 0 5px;
-				
-			}
-			
-			
-				#header nav a.current-page-item  {
-					background-image: -moz-linear-gradient(top, #007b99, #007897);
-					background-image: -webkit-linear-gradient(top, #007b99, #007897);
-					background-image: -ms-linear-gradient(top, #007b99, #007897);
-					background-image: linear-gradient(top, #007b99, #007897);
-					background-color: #007897;
-					box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.1), 0px 0px 5px 1px rgba(255, 255, 255, 0.1);
-				}
-
-				#header nav a:hover {
-					background-image: -moz-linear-gradient(top, #0782a0, #077d9b);
-					background-image: -webkit-linear-gradient(top, #0782a0, #077d9b);
-					background-image: -ms-linear-gradient(top, #0782a0, #077d9b);
-					background-image: linear-gradient(top, #0782a0, #077d9b);
-					background-color: #0882a1;
-					box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.05), 0px 0px 5px 1px rgba(255, 255, 255, 0.05);
-				}
-				#header nav form {
-					display: inline;
-					justify-content:end;
-					text-decoration: none;
-					color: #fff;
-					padding: 0 5px 0 5px;
-					
-				}
-				
-				
-					#header nav form.current-page-item  {
-						background-image: -moz-linear-gradient(top, #007b99, #007897);
-						background-image: -webkit-linear-gradient(top, #007b99, #007897);
-						background-image: -ms-linear-gradient(top, #007b99, #007897);
-						background-image: linear-gradient(top, #007b99, #007897);
-						background-color: #007897;
-						box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.1), 0px 0px 5px 1px rgba(255, 255, 255, 0.1);
-					}
-	
-					#header nav form:hover {
-						background-image: -moz-linear-gradient(top, #0782a0, #077d9b);
-						background-image: -webkit-linear-gradient(top, #0782a0, #077d9b);
-						background-image: -ms-linear-gradient(top, #0782a0, #077d9b);
-						background-image: linear-gradient(top, #0782a0, #077d9b);
-						background-color: #0882a1;
-						box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.05), 0px 0px 5px 1px rgba(255, 255, 255, 0.05);
-					}
-          /* Footer */
-
-	#footer-wrapper {
-		padding: 4em 0;
-	}
-</style>
-
-<div id="page-wrapper">
-
-  <!-- Header -->
-    <div id="header-wrapper">
-      	<div class="container mt-5">
-        	<div class="row w-100">
-         	  	<header id="header">
-            		<nav class="d-flex justify-content-between m-2" id="nav">
-						<div class="col">
-							<a href="{%url 'main:home_view' %}" id="logo"><img src="/static/images/bright.png" alt="logo" class="invert" style="width: 14rem;"/></a>
-						</div>
-
-						<div class="col">
-							<a href="{%url 'main:home_view' %}" class="current-page-item">Homepage</a>
-							<a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
-							<a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							account</a>
-
-							<ul style="padding: 0; margin: 0;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							
-								{% if request.user.is_authenticated %}
-								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
-								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
-								{% else %}
-								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
-								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
-								{% endif %}
-
-							</ul>
-							
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							browse
-							</a>
-
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" href="{% url 'majors:major_home_view' %}">majors</a></li>
-								<li><a class="dropdown-item" href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
-								<li><a class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
-								<li><a class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
-								<li><a class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
-								<li><a class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
-							</ul>
-
-							<a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							manage
-							</a>
-
-								
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									
-								<li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
-								<li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
-								<li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
-								<li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
-								<li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
-								<li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
-							
-							</ul>
-						</div>
-
-						{% block search %}
-
-
-						{% endblock %}
-                  
-              		</nav>
-              
-            	</header>
-        	</div>
 		</div>
+		
+		<div class="col-4 pt- d-flex justify-content-end align-items-center ">
+		  
+		  {% if request.user.is_authenticated %}
+		  <a class="btn btn-sm btn-outline-secondary bg-dark" href="{% url 'accounts:user_profile_view' request.user.id %}">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+			  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+			  <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+			</svg>
+		  </a>
+		  {%else%}
+		  <a class="btn btn-sm btn-outline-secondary bg-dark" href="{% url 'accounts:login_user_view' %}">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+				<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+			</svg>
+		</a>
+		{% endif %}
+   
+
+		 
+		  <span class="material-symbols-outlined ">
+			
+			<a class="btn btn-sm btn-outline-secondary bg-dark logo2" href="/">home_app_logo</a>
+			</span>
+		  
+		</div>
+	  </div>
+	  
+	  <nav class="nav nav-underline justify-content-center header2" id="main-header">
+	
+		<a class="nav-item nav-link link-body-emphasis text-uppercase p-font" href="{%url 'main:home_view' %}">Homepage</a>
+		
+		<a class="nav-item nav-link link-body-emphasis text-uppercase p-font" href="{% url 'posts:post_list'%}">Posts</a>
+		<a class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			browse
+			</a>
+
+			<ul  class="dropdown-menu p-font" aria-labelledby="navbarDropdownMenuLink">
+				<li ><a style="color: black;" class="dropdown-item " href="{% url 'majors:major_home_view' %}">majors</a></li>
+				<li ><a style="color: black;" class="dropdown-item " href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
+				<li ><a style="color: black;" class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
+				<li ><a style="color: black;" class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
+				<li ><a style="color: black;" class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
+				<li ><a style="color: black;" class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
+			</ul>
+
+			<a class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			manage
+			</a>
+
+				
+			<ul class="dropdown-menu p-font" aria-labelledby="navbarDropdownMenuLink">
+					
+				<li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
+				<li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
+				<li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
+				<li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
+				<li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
+				<li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
+			
+			</ul>
+		<a  class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			account</a>
+
+			<ul  class="dropdown-menu p-font" aria-labelledby="navbarDropdownMenuLink">
+			
+				{% if request.user.is_authenticated %}
+				<li  ><a  class="dropdown-item " href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
+				<li  ><a  class="dropdown-item " href="{% url 'accounts:logout_user_view' %}">log out</a></li>
+				{% else %}
+				<li  ><a  class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
+				<li  ><a class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
+				{% endif %}
+
+			</ul>
+			{% block search %}
+						
+
+			{% endblock %}
+	  </nav>
 	</div>
-</div>
+  </div>
+	</header>
+  
+	
+  </div>
+ 
 
-      
-        {% block content %}
+{% block content %}
 
+{% endblock %}
 
-        {% endblock %}
 </body>
-        <div id="footer-wrapper">
-					<div class="container">
-						<div class="row">
-							<div class="col-8 col-12-medium">
-
-								<section>
-									<h2>How about a truckload of links?</h2>
-									<div>
-										<div class="row">
-											<div class="col-3 col-6-medium col-12-small">
-												<ul class="link-list">
-													<li><a href="#">Sed neque nisi consequat</a></li>
-													<li><a href="#">Dapibus sed mattis blandit</a></li>
-													<li><a href="#">Quis accumsan lorem</a></li>
-													<li><a href="#">Suspendisse varius ipsum</a></li>
-													<li><a href="#">Eget et amet consequat</a></li>
-												</ul>
-											</div>
-											<div class="col-3 col-6-medium col-12-small">
-												<ul class="link-list">
-													<li><a href="#">Quis accumsan lorem</a></li>
-													<li><a href="#">Sed neque nisi consequat</a></li>
-													<li><a href="#">Eget et amet consequat</a></li>
-													<li><a href="#">Dapibus sed mattis blandit</a></li>
-													<li><a href="#">Vitae magna sed dolore</a></li>
-												</ul>
-											</div>
-											<div class="col-3 col-6-medium col-12-small">
-												<ul class="link-list">
-													<li><a href="#">Sed neque nisi consequat</a></li>
-													<li><a href="#">Dapibus sed mattis blandit</a></li>
-													<li><a href="#">Quis accumsan lorem</a></li>
-													<li><a href="#">Suspendisse varius ipsum</a></li>
-													<li><a href="#">Eget et amet consequat</a></li>
-												</ul>
-											</div>
-											<div class="col-3 col-6-medium col-12-small">
-												<ul class="link-list">
-													<li><a href="#">Quis accumsan lorem</a></li>
-													<li><a href="#">Sed neque nisi consequat</a></li>
-													<li><a href="#">Eget et amet consequat</a></li>
-													<li><a href="#">Dapibus sed mattis blandit</a></li>
-													<li><a href="#">Vitae magna sed dolore</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</section>
-
-							</div>
-							<div class="col-4 col-12-medium">
-
-								<section>
-									<h2>Something of interest</h2>
-									<p>Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed.
-									Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet
-									mollis justo facilisis quis. Sed sagittis mauris amet tellus gravida
-									lorem ipsum dolor sit blandit.</p>
-									<footer class="controls">
-										<a href="#" class="button">Oh, please continue ....</a>
-									</footer>
-								</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-
-								<div id="copyright">
-									&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
+<footer>
+<div class="row  padding-footer-col ">
+<div class="col-12 col-md logo3">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
+  <small class="d-block mb-3 p-font">© 2023</small>
+</div>
+<div class="col-6 col-md color-text-footer">
+  <h5 class="p-font">Resources</h5>
+  <ul class="list-unstyled text-small color-text-footer">
+	<li><a class="link-secondary text-decoration-none p-font" href="#">bootstrap</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="https://www.visitsaudi.com/">Visit Saudi Arabia</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="https://www.pinterest.com/">Pinteres</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="https://fonts.google.com/">Fonts&Icon</a></li>
+  </ul>
+</div>
+<div class="col-6 col-md color-text-footer">
+  <h5 class="p-font">Resources</h5>
+  <ul class="list-unstyled text-small color-text-footer">
+	<li><a class="link-secondary text-decoration-none p-font" href="https://youtube.com">Videos</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="https://www.google.com/maps">Maps</a></li>
+  </ul>
+</div>
+<div class="col-6 col-md color-text-footer ">
+  <h5 class="p-font">About</h5>
+  <ul class="list-unstyled text-smallr ">
+	<li><a class="link-secondary text-decoration-none p-font" href="https://github.com/m7mdhusinn">Team</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="https://tuwaiq.edu.sa/">Locations</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="#">Privacy</a></li>
+	<li><a class="link-secondary text-decoration-none p-font" href="#">Terms</a></li>
+  </ul>
+</div>
+</div>
+</footer>
 		
     
         

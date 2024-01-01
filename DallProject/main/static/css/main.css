@@ -54,6 +54,14 @@ body {
 	-webkit-text-size-adjust: none;
 }
 
+
+.dropdown-menu li {
+	
+	height:	40px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	background-color: #0882a1;
+}
 mark {
 	background-color: transparent;
 	color: inherit;
@@ -1467,14 +1475,14 @@ input, select, textarea {
 		margin-bottom: 2em;
 	}
 
+
 		ul.big-image-list li img {
 			width: 178px;
 		}
 
 	ul.link-list li {
 		border-top: solid 1px #ced0b7;
-		padding: 0.75em 0 0 0;
-		margin: 0.75em 0 0 0;
+		
 	}
 
 		ul.link-list li:first-child {
@@ -1576,9 +1584,12 @@ input, select, textarea {
 				justify-content:center;
 				text-decoration: none;
 				color: #fff;
-				background-color:#006e8b;
 				padding: 0 5px 0 5px;
 				
+			}
+			#header nav .dropdown-item{
+				padding: 0px;
+				margin: 0px;
 			}
 			
 			

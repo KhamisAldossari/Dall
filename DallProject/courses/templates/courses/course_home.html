@@ -7,7 +7,7 @@
                   </form>
                   {% endblock %}
 {% block content %} 
-<div id="main">
+<div id="main" class="p-font" style="margin-top: 10rem;margin-bottom: 5rem;">
 {% if keyword %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Courses</h2>
 {% else %}
@@ -17,7 +17,7 @@
   <div class="row  h-100">
     {% for course in view_course %}
       <div class="col-lg-4 h-100">
-        <a href="{% url 'courses:detail_course_view' course.id  %}" class="text-decoration-none"><img src="{{ course.course_image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+        <a href="{% url 'courses:detail_course_view' course.id  %}" class="text-decoration-none"><img src="{{ course.course_image.url }}" class="rounded-circle" style="height: 10rem; width: 10rem; object-fit: cover;"></a>
         <h2 class="fw-normal">{{ course.name }}</h2>
         <p>{{ course.description }}</p>
         <p><a class="btn btn-secondary" href="{% url 'courses:detail_course_view' course.id  %}">Discover »</a></p>
@@ -28,4 +28,6 @@
 </div>
   
     
+
+
 {%endblock%}

@@ -7,7 +7,7 @@
                   </form>
                   {% endblock %}
 {% block content %}
-<div id="main">
+<div id="main" style="margin-top: 10rem;margin-bottom: 5rem;" class="p-font">
 {% if keyword %}
 <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Job titles </h2>
 {% else %}
@@ -22,14 +22,12 @@
         <div class="col-4 col-12-medium h-100">
   
           <section>
-            <a href="{%url 'jobs:detail_job_view' job.id %}"><h2>{{ job.name }}</h2></a>
-            <ul class="small-image-list">
-              <li>
+            <a class="text-dark" href="{%url 'jobs:detail_job_view' job.id %}"><h2>{{ job.name }}</h2></a>
+            
               
                 <p>{{ job.description }} </p>
                 
-              </li>
-            </ul>
+        
           </section>
         </div>
         {%endfor%}

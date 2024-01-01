@@ -4,20 +4,20 @@
 
 {% block content %}
 
-<section class="container mt-5  d-flex justify-content-center align-middle">
+<section class="container d-flex justify-content-center align-middle" style="margin-top: 10rem;">
 
 
  
   <div class="row">
-   
-    <h1 class="d-flex justify-content-center">Register New User</h1>
-      <div class="col-12">
+    <div class="col-12">
+    <h1 class="d-flex justify-content-center p-font">Register New User</h1>
+      
         {% if msg %}
         <div class="alert alert-danger" role="alert">
         {{ msg }}
         </div>
     {% endif %}
-          <form class="d-flex flex-column gap-1" action="{% url 'accounts:register_user_view' %}" method="post" enctype="multipart/form-data">
+          <form class="d-flex flex-column gap-1 p-font" action="{% url 'accounts:register_user_view' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
 
               <input class="form-control" type="text" name="username" required minlength="3" placeholder="username"/>
