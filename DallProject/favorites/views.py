@@ -28,3 +28,9 @@ def add_favorite_view(request:HttpRequest, major_id):
         return redirect("majors:detail_major_view", major_id=major.id)
     except Exception as e:
         return redirect("main:home_view")
+    
+def my_favorites_view(request: HttpRequest):
+
+    favorites = Favorite.objects.filter(user=request.user)
+
+    return render(request, 'accounts/profile.html', {"favorites" : favorites})

@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from .models import UserProfile
 from posts.models import Post
+from favorites.models import Favorite
 
 # Create your views here.
 
@@ -74,14 +75,14 @@ def user_profile_view(request: HttpRequest, user_id):
 
         followers = user.followers.all()
         number_of_followers = followers.count()
-
+        favorites = Favorite.objects.filter(user=request.user)
             
     except Exception as e :
         msg= f'something went wrong {e}'
         return render(request, 'main/not_found.html',{'msg':msg})
     
     
-    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers, 'following':following})
+    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers, 'following':following,'favorites':favorites})
 
 def add_follower(request:HttpRequest, user_id):
         

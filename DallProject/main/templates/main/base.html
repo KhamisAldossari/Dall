@@ -80,7 +80,7 @@ window.addEventListener('scroll', function() {
 	  
 	  <nav class="nav nav-underline justify-content-center header2" id="main-header">
 	
-		<a class="nav-item nav-link link-body-emphasis text-uppercase p-font" href="{%url 'main:home_view' %}">Homepage</a>
+		<a class="nav-item nav-link link-body-emphasis text-uppercase p-font" href="{%url 'main:home_view' %}">Home</a>
 		
 		<a class="nav-item nav-link link-body-emphasis text-uppercase p-font" href="{% url 'posts:post_list'%}">Posts</a>
 		<a class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,7 +95,7 @@ window.addEventListener('scroll', function() {
 				<li ><a style="color: black;" class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
 				<li ><a style="color: black;" class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
 			</ul>
-
+			{%if request.user.is_staff %}
 			<a class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			manage
 			</a>
@@ -111,6 +111,7 @@ window.addEventListener('scroll', function() {
 				<li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
 			
 			</ul>
+			{%endif%}
 		<a  class="nav-link dropdown-toggle nav-item nav-link link-body-emphasis text-uppercase p-font" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			account</a>
 

@@ -12,5 +12,6 @@ urlpatterns = [
     path('followers/add/<user_id>/', views.add_follower, name='add_follower'),
     path('followers/remove/<user_id>/', views.remove_follower, name='remove_follower'),
     
+    
    
 ]

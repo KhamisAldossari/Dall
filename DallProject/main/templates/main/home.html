@@ -5,148 +5,83 @@
 
 {% block content %}
 <!-- Banner -->
-<div id="main">
-<div id="banner-wrappe">
+<div id="main" class="p-font"  style="margin: 0px;">
+
     <div class="" style="width: 100%;" >
 
-        <div id="banner" style="width:100vw; padding-top: 0px; height: 40vh; overflow: hidden; margin-bottom: 5rem;">
+        <div id="banner" style="width:100vw; padding-top: 0px; height: 110vh; overflow: hidden;margin-top: 0px;">
             
             
             <video style=" width: 100%;
             height: auto; 
             border: 2px solid #ddd; 
             border-radius: 8px;" autoplay muted loop>
-                <source src="static/videos/search.mp4" type="video/mp4">
+                <source src="static/videos/1888.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            
         </div>
 
     </div>
-</div>
+
 
 <!-- Main -->
-
+<hr/>
     <div class="container">
-        <div class="row main-row">
+        <div class="row">
             <div class="col-4 col-12-medium">
 
-                <section>
-                    <h2>Welcome to Minimaxing!</h2>
-                    <p>This is <strong>Minimaxing</strong>, a fully responsive HTML5 site template designed by <a href="http://twitter.com/ajlkn">AJ</a> and released for free by <a href="http://html5up.net">HTML5 UP</a>. It features
-                    a simple, lightweight design, solid HTML5 and CSS3 code, and full responsive support for desktop, tablet, and small displays.</p>
+                <div>
+                    <h2>Welcome to DALL!</h2>
+                    <p>Exploring job opportunities that align with your major can significantly enhance your career prospects and fulfillment, ensuring that your professional path is in harmony with your academic background and expertise.</p>
                     <footer class="controls">
-                        <a href="http://html5up.net" class="button">More cool designs ...</a>
+                        <a href="{%url 'majors:major_home_view' %}" class="btn btn-info">Find Your Way...</a>
                     </footer>
-                </section>
+                </div>
 
             </div>
             <div class="col-4 col-6-medium col-12-small">
 
-                <section>
+                <div>
                     <h2>Who are you guys?</h2>
-                    <ul class="small-image-list">
-                        <li>
-                            <a href="#"><img src="images/pic2.jpg" alt="" class="left" /></a>
-                            <h4>Jane Anderson</h4>
-                            <p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo facilisis amet quis.</p>
-                        </li>
-                        <li>
-                            <a href="#"><img src="images/pic1.jpg" alt="" class="left" /></a>
-                            <h4>James Doe</h4>
-                            <p>Vitae magna eget odio amet mollis justo facilisis amet quis. Sed sagittis consequat.</p>
-                        </li>
-                    </ul>
-                </section>
+                    
+                    <p>We are a comprehensive website designed to streamline your career journey. Simply search by major, and we provide personalized recommendations for certificates, courses, essential skills, job titles, and companies looking for your expertise. Empowering you to make informed decisions and succeed in your professional endeavors.</p>
+                        
+                          
+                </div>
 
             </div>
             <div class="col-4 col-6-medium col-12-small">
-
-                <section>
-                    <h2>How about some links?</h2>
-                    <div>
-                        <div class="row">
-                            <div class="col-6 col-12-small">
-                                <ul class="link-list">
-                                    <li><a href="#">Sed neque nisi consequat</a></li>
-                                    <li><a href="#">Dapibus sed mattis blandit</a></li>
-                                    <li><a href="#">Quis accumsan lorem</a></li>
-                                    <li><a href="#">Suspendisse varius ipsum</a></li>
-                                    <li><a href="#">Eget et amet consequat</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-12-small">
-                                <ul class="link-list">
-                                    <li><a href="#">Quis accumsan lorem</a></li>
-                                    <li><a href="#">Sed neque nisi consequat</a></li>
-                                    <li><a href="#">Eget et amet consequat</a></li>
-                                    <li><a href="#">Dapibus sed mattis blandit</a></li>
-                                    <li><a href="#">Vitae magna sed dolore</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+              <div><h2>Posts Of Users</h2>
+                <a class="btn btn-info" href="{%url 'posts:post_list'%}">posts</a></div>
+                
 
             </div>
-            <div class="col-6 col-12-medium">
-
-                <section>
-                    <h2>An assortment of pictures and text</h2>
-                    <p>Duis neque nisi, dapibus sed mattis quis, rutrum et accumsan.
-                    Suspendisse nibh. Suspendisse vitae magna eget odio amet mollis
-                    justo facilisis quis. Sed sagittis mauris amet tellus gravida
-                    lorem ipsum dolor sit amet consequat blandit lorem ipsum dolor
-                    sit amet consequat sed dolore.</p>
-                    <ul class="big-image-list">
-                        <li>
-                            <a href="#"><img src="images/pic3.jpg" alt="" class="left" /></a>
-                            <h3>Magna Gravida Dolore</h3>
-                            <p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo
-                            facilisis amet quis consectetur in, sollicitudin vitae justo. Cras
-                            Maecenas eu arcu purus, phasellus fermentum elit.</p>
-                        </li>
-                        <li>
-                            <a href="#"><img src="images/pic4.jpg" alt="" class="left" /></a>
-                            <h3>Magna Gravida Dolore</h3>
-                            <p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo
-                            facilisis amet quis consectetur in, sollicitudin vitae justo. Cras
-                            Maecenas eu arcu purus, phasellus fermentum elit.</p>
-                        </li>
-                        <li>
-                            <a href="#"><img src="images/pic5.jpg" alt="" class="left" /></a>
-                            <h3>Magna Gravida Dolore</h3>
-                            <p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo
-                            facilisis amet quis consectetur in, sollicitudin vitae justo. Cras
-                            Maecenas eu arcu purus, phasellus fermentum elit.</p>
-                        </li>
-                    </ul>
-                </section>
-
+            <div>
+                <h2>Our Services</h2>
+                <ul>
+                    <li>
+                        <strong>Search by Major:</strong> Explore career opportunities tailored to your chosen major.
+                    </li>
+                    <li>
+                        <strong>Certificates:</strong> Discover relevant certifications to enhance your skills and qualifications.
+                    </li>
+                    <li>
+                        <strong>Courses:</strong> Access curated courses aligned with your major to further your knowledge.
+                    </li>
+                    <li>
+                        <strong>Skills:</strong> Identify essential skills necessary for success in your chosen field.
+                    </li>
+                    <li>
+                        <strong>Job Titles:</strong> Explore a variety of job titles within your major, providing clarity on potential career paths.
+                    </li>
+                    <li>
+                        <strong>Companies:</strong> Discover companies actively seeking professionals with your expertise.
+                    </li>
+                </ul>
             </div>
-            <div class="col-6 col-12-medium">
-
-                <article class="blog-post">
-                    <h2>Just another blog post</h2>
-                    <a class="comments" href="#">33 comments</a>
-                    <a href="#"><img src="images/pic6.jpg" alt="" class="top blog-post-image" /></a>
-                    <h3>Magna Gravida Dolore</h3>
-                    <p>Aenean non massa sapien. In hac habitasse platea dictumst.
-                    Maecenas sodales purus et nulla sodales aliquam. Aenean ac
-                    porttitor metus. In hac habitasse platea dictumst. Phasellus
-                    blandit turpis in leo scelerisque mollis. Nulla venenatis
-                    ipsum nec est porta rhoncus. Mauris sodales sed pharetra
-                    nisi nec consectetur. Cras elit magna, hendrerit nec
-                    consectetur in, sollicitudin vitae justo. Cras amet aliquet
-                    Aliquam ligula turpis, feugiat id fermentum malesuada,
-                    rutrum eget turpis. Mauris sodales sed pharetra nisi nec
-                    consectetur. Cras elit magna, hendrerit nec consectetur
-                    in sollicitudin vitae.</p>
-                    <footer class="controls">
-                        <a href="#" class="button">Continue Reading</a>
-                    </footer>
-                </article>
-
-            </div>
+            
+            
         </div>
     </div>
 </div>

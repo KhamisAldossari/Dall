@@ -259,7 +259,7 @@
 
 /* CONVERSATION */
 </style>
-<div class="container" style="margin-top: 10rem;">
+<div class="container" style="margin-top: 10rem; margin-bottom: 5rem;">
     <div class="row" id="user-profile">
     
           <div class="row gutters-sm">
@@ -363,6 +363,15 @@
                     </div>
                     <hr>
                     <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Major</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                           {{ user.major }}
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
                         <div class="col-sm-3">
                           <h6 class="mb-0">Degree</h6>
                         </div>
@@ -396,6 +405,7 @@
                     <li class="active"><a href="#tab-posts" data-toggle="tab">Posts</a></li>
                     <li><a href="#tab-followers" data-toggle="tab">Followers</a></li>
                     <li><a href="#tab-following" data-toggle="tab">Following</a></li>
+                    <li><a href="#tab-favorites" data-toggle="tab">Favorites</a></li>
                     </ul>
                     <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab-posts">
@@ -439,45 +449,16 @@
                     <a href="#">{{follower.username}} </a>
                     </div>
                     <div class="time">
-                    <i class="fa fa-clock-o"></i> {{follower.userprofile.bio}}
+                    <i class="fa "></i> {{follower.userprofile.major}}
                     </div>
-                    <div class="type">
-                    <span class="label label-danger">Admin</span>
-                    </div>
+                  
                     </div>
                     </li>
                     {% endfor %}  
 
-                    <li class="col-md-6">
-                    <div class="img">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-responsive" alt>
-                    </div>
-                    <div class="details">
-                    <div class="name">
-                    <a href="#">Mila Kunis</a>
-                    </div>
-                    <div class="time online">
-                    <i class="fa fa-check-circle"></i> Online
-                    </div>
-                    <div class="type">
-                    <span class="label label-warning">Pending</span>
-                    </div>
-                    </div>
-                    </li>
+                  
 
-                    <li class="col-md-6">
-                    <div class="img">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-responsive" alt>
-                    </div>
-                    <div class="details">
-                    <div class="name">
-                    <a href="#">Robert Downey Jr.</a>
-                    </div>
-                    <div class="time">
-                    <i class="fa fa-clock-o"></i> Last online: Thursday
-                    </div>
-                    </div>
-                    </li>
+                    
                     </ul>
                     <br>
                     <a href="#" class="btn btn-success pull-right">View all users</a>
@@ -504,14 +485,42 @@
                         </div>
                         </div>
                         </li>
+                        {% endfor %} 
+                        </ul>
+                      </div>
+                        <div class="tab-pane fade" id="tab-favorites">
+                          <ul class="widget-users row">
+                            {%if request.user.id == user.user.id%}
+                          {% if favorites.count == 0 %}
+                          <div class="alert alert-info">You don't have any favorites yet.</div>
+                {% endif %}
+                          {%else%}
+                          <div class="alert alert-info">don't have any favorites yet.</div>
+                          {%endif%}
+                {% for fav in favorites %} 
+      
+                          <li class="col-md-6">
+                          <div class="img">
+                          <img src="{{ fav.major.image.url }}" class="img-responsive" alt>
+                          </div>
+                          <div class="details">
+                          <div class="name">   
+                          <a href="{%url 'majors:detail_major_view' fav.major.id%}">{{fav.major.name}} </a>
+                          </div>
+                          <div class="time">
+                            <i class="fa fa-clock-o"></i> {{fav.created_at}}
+                            </div>
+                          </div>
+                          </li>
                         {% endfor %}  
-    
+                          </ul>
                     </div>
                     </div>
                     </div>
                     </div>
                     </div>
                     </div>
+</div>
                     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
                     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <script type="text/javascript"></script>
