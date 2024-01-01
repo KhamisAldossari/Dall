@@ -1,33 +1,33 @@
 {% extends 'main/base.html' %}
-{% block title %} All Majors {% endblock %}
+{% block title %} Majors {% endblock %}
+
 {% block search %}
-                  <form class="d-flex" role="search" method="get" action="{%url 'majors:major_home_view' %}">
-                    <input style="width: 8rem" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-                  {% endblock %}
-{% block content %} 
-<div id="main">
-{% if keyword %}
-<h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Majors</h2>
-{% else %}
-<h2 class=" border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Majors</h2>
-{% endif %}
-<div class="container-fluid mt-5">
-  <div class="row  h-100">
-    {% for major in view_major %}
-      <div class="col-lg-4 h-100">
-        <a href="{%url 'majors:detail_major_view' major.id %}" class="text-decoration-none"><img src="{{ major.image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
-        <h2 class="fw-normal">{{ major.name }}</h2>
-        <p>{{ major.description }}</p>
-        <p><a class="btn btn-secondary" href="{%url 'majors:detail_major_view' major.id %}">Discover »</a></p>
-      </div>
-    {% endfor %}
+  <div class="col">
+    <form class=" d-inline-flex" role="search" method="get" action="{%url 'majors:major_home_view' %}">
+      <input style="width: 8rem" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
+      <button class="btn btn-outline-dark " type="submit">Search</button>
+    </form>
   </div>
-</div>
-</div>
+{% endblock %}
 
-        
-
-    
+{% block content %} 
+  <div id="main">
+    {% if keyword %}
+    <h2 class="pb-2 border-bottom d-flex justify-content-center " style="margin-top: 5rem;">Showing result for: "{{keyword}}" in Majors</h2>
+    {% else %}
+    <h2 class=" border-bottom d-flex justify-content-center " style="margin-top: 5rem;">All Majors</h2>
+    {% endif %}
+    <div class="container-fluid mt-5">
+      <div class="row  h-100">
+        {% for major in view_major %}
+          <div class="col-lg-4 h-100">
+            <a href="{%url 'majors:detail_major_view' major.id %}" class="text-decoration-none"><img src="{{ major.image.url }}" class="rounded w-100" style="height: 10rem;  object-fit: cover;"></a>
+            <h2 class="fw-normal">{{ major.name }}</h2>
+            <p>{{ major.description }}</p>
+            <p><a class="btn btn-secondary" href="{%url 'majors:detail_major_view' major.id %}">Discover »</a></p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>    
 {%endblock%}

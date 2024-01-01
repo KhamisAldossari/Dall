@@ -140,78 +140,80 @@
 	#footer-wrapper {
 		padding: 4em 0;
 	}
-          </style>
+</style>
+
 <div id="page-wrapper">
 
   <!-- Header -->
     <div id="header-wrapper">
-      <div class="container mt-5">
-        <div class="row w-100">
-          
+      	<div class="container mt-5">
+        	<div class="row w-100">
+         	  	<header id="header">
+            		<nav class="d-flex justify-content-between m-2" id="nav">
+						<div class="col">
+							<a href="{%url 'main:home_view' %}" id="logo"><img src="/static/images/bright.png" alt="logo" class="invert" style="width: 14rem;"/></a>
+						</div>
 
-            <header id="header">
-              
-              <nav id="nav">
-                
-                <a href="{%url 'main:home_view' %}" id="logo"><img src="/static/images/bright.png" alt="logo" class="invert" style="max-width: 15%;";/></a>
-                <a href="{%url 'main:home_view' %}" class="current-page-item">Homepage</a>
-                <a href="twocolumn1.html">Two Column #1</a>
-                <a href="twocolumn2.html">Two Column #2</a>
-                <a href="onecolumn.html">One Column</a>
-                
-                <a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
-                <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  account
-                  </a>
-                  <ul style="padding: 0; margin: 0;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  
-                    {% if request.user.is_authenticated %}
-                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
-                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
-                    {% else %}
-                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
-                    <li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
-                    {% endif %}
+						<div class="col">
+							<a href="{%url 'main:home_view' %}" class="current-page-item">Homepage</a>
+							<a class="nav-link" href="{% url 'posts:post_list'%}">Posts</a>
+							<a  class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							account</a>
 
-                  </ul>
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  browse
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'majors:major_home_view' %}">majors</a></li>
-                  <li><a class="dropdown-item" href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
-                  <li><a class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
-                  <li><a class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
-                  <li><a class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
-                  <li><a class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
-        
-                  </ul>
-                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    manage
-                  </a>
-                  <form class=" d-inline-flex" role="search" method="get" action="{%url 'majors:major_home_view' %}">
-                    <input style="width: 8rem" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"/>
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-               
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                   
-                  <li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
-                  <li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
-                  <li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
-                  <li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
-                  <li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
-                  <li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
+							<ul style="padding: 0; margin: 0;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							
+								{% if request.user.is_authenticated %}
+								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:user_profile_view' request.user.id %}">profile</a></li>
+								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:logout_user_view' %}">log out</a></li>
+								{% else %}
+								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:login_user_view' %}">sign in</a></li>
+								<li style="padding: 0; margin: 0;" ><a style="padding: 0; margin: 0;" class="dropdown-item" href="{% url 'accounts:register_user_view' %}">register</a></li>
+								{% endif %}
+
+							</ul>
+							
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							browse
+							</a>
+
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" href="{% url 'majors:major_home_view' %}">majors</a></li>
+								<li><a class="dropdown-item" href="{% url 'certificates:certificate_home_view' %}">certificates</a></li>
+								<li><a class="dropdown-item" href="{% url 'companies:company_home_view' %}">companies</a></li>
+								<li><a class="dropdown-item" href="{% url 'courses:course_home_view' %}">courses</a></li>
+								<li><a class="dropdown-item" href="{% url 'jobs:job_home_view' %}">job titles</a></li>
+								<li><a class="dropdown-item" href="{% url 'skills:skill_home_view' %}">skills</a></li>
+							</ul>
+
+							<a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							manage
+							</a>
+
+								
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+									
+								<li><a class="dropdown-item" href="{% url 'majors:add_major_view' %}">add major</a></li>
+								<li><a class="dropdown-item" href="{% url 'certificates:add_certificate_view' %}">add certificate</a></li>
+								<li><a class="dropdown-item" href="{% url 'courses:add_course_view' %}">add course</a></li>
+								<li><a class="dropdown-item" href="{% url 'jobs:add_job_view' %}">add job</a></li>
+								<li><a class="dropdown-item" href="{% url 'skills:add_skill_view' %}">add skill</a></li>
+								<li><a class="dropdown-item" href="{% url 'companies:add_company_view' %}">add company</a></li>
+							
+							</ul>
+						</div>
+
+						{% block search %}
+
+
+						{% endblock %}
                   
+              		</nav>
               
-                  
-                  </ul>
-        
-                  
-              </nav>
-              
-            </header>
-        </div></div></div></div>
+            	</header>
+        	</div>
+		</div>
+	</div>
+</div>
 
       
         {% block content %}
