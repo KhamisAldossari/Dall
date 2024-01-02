@@ -1,0 +1,290 @@
+{% extends 'main/base.html' %}
+
+{% block title %} {{ user_profile.user.username }} Profile {% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 10rem; margin-bottom: 5rem;">
+    <div class="row" id="user-profile">
+
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src='{{ user_profile.profile_picture.url }}' alt="Admin" class="rounded-circle"
+                                width="150">
+                            <div class="mt-3">
+                                <h4>@{{ user_profile.user.username}} </h4>
+                                <p class="text-secondary mb-1">{{ user_profile.major }}</p>
+                                <p class="text-muted font-size-sm">{{ user_profile.bio }}</p>
+                                <p>Followers: {{ number_of_followers }}</p>
+                                <div class="d-flex">
+                                    {% if request.user.id == user_profile.user.id %}
+                                    {% else %}
+                                    {% if is_following %}
+
+                                    <form method="POST" action="{% url 'accounts:remove_follower' user.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-danger" type=submit>UnFollow</button>
+                                    </form>
+                                    {% else %}
+                                    <form method="POST" action="{% url 'accounts:add_follower' user.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-success" type=submit>Follow</button>
+                                    </form>
+                                    {% endif %}
+                                    {% endif %}
+
+                                    <a href="{%url 'posts:post_create' %}"> <button class="btn btn-outline-primary">Add
+                                            Post</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-globe mr-2 icon-inline">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                    </path>
+                                </svg>Website</h6>
+                            <span class="text-secondary">https://bootdey.com</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-github mr-2 icon-inline">
+                                    <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                    </path>
+                                </svg>Github</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-twitter mr-2 icon-inline text-info">
+                                    <path
+                                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                    </path>
+                                </svg>Twitter</h6>
+                            <span class="text-secondary">@bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-instagram mr-2 icon-inline text-danger">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>Instagram</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-facebook mr-2 icon-inline text-primary">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>Facebook</h6>
+                            <span class="text-secondary">bootdey</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Full Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{user_profile.user.email}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.phone_number }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">University</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.university_name }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Major</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.major }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Degree</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.degree }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0"> Birthdate</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user_profile.birth_date }}
+                            </div>
+                        </div>
+                        <hr>
+                        {% if request.user.is_authenticated and request.user.id == user_profile.user.id %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-info " target="__blank"
+                                    href="{% url 'accounts:update_user_view'%}">Edit</a>
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+                </div>
+
+
+                <div class="tabs-wrapper profile-tabs">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Posts</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="followers-tab" data-bs-toggle="tab" data-bs-target="#followers" type="button" role="tab" aria-controls="followers" aria-selected="false">Followers</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="following-tab" data-bs-toggle="tab" data-bs-target="#following" type="button" role="tab" aria-controls="following" aria-selected="false">Following</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="favorites-tab" data-bs-toggle="tab" data-bs-target="#favorites" type="button" role="tab" aria-controls="favorites" aria-selected="false">Favorites</a></li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        {%for post in user_posts%}
+                                        <tr>
+                                            <td class="text-center">
+                                                <i class="fa fa-comment"></i>
+                                            </td>
+
+
+                                            <td>
+                                                <a href="{%url 'posts:post_detail' post.id%}"> {{post.title}}</a>
+                                            </td>
+
+                                            <td>
+                                                {{post.date_posted}}
+                                            </td>
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+                            <ul class="widget-users row">
+                                {% for follower in followers %}
+                                <li class="col-md-6 d-flex mt-3">
+                                    <div class="details ">
+                                        <div class="img d-inline">
+                                            <img src="{{ follower.userprofile.profile_picture.url }}" style="width: 5rem;"/>
+                                        </div>
+                                        <div class="name d-inline">
+                                            <a href="{%url 'accounts:user_profile_view' follower.id%}">{{follower.username}} </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
+                            <ul class="widget-users row">
+                                {% for followed in following %}
+
+                                <li class="col-md-6 d-flex mt-3">
+                                   
+                                    <div class="details">
+                                        <div class="img d-inline">
+                                            <img src="{{ followed.userprofile.profile_picture.url }}" style="width: 5rem;"/>
+                                        </div>
+                                        <div class="name d-inline me-3">
+                                            <a href="{%url 'accounts:user_profile_view' followed.id%}">{{followed.username}} </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+                            <ul class="widget-users row">
+                                {%if request.user.id == user_profile.user.id%}
+                                {% if favorites.count == 0 %}
+                                <div class="alert alert-info">You don't have any favorites yet.</div>
+                                {% endif %}
+                                {%else%}
+                                <div class="alert alert-info">don't have any favorites yet.</div>
+                                {%endif%}
+                                {% for fav in favorites %}
+
+                                <li class="col-md-6">
+                                    <div class="img">
+                                        <img src="{{ fav.major.image.url }}" class="img-responsive" alt>
+                                    </div>
+                                    <div class="details">
+                                        <div class="name">
+                                            <a href="{%url 'majors:detail_major_view' fav.major.id%}">{{fav.major.name}}
+                                            </a>
+                                        </div>
+                                        <div class="time">
+                                            {{fav.created_at}}
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

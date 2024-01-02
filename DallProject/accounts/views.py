@@ -56,24 +56,21 @@ def logout_user_view(request: HttpRequest):
     if request.user.is_authenticated:
         logout(request)    
 
-    return redirect("accounts:login_user_view")
+    return redirect("main:home_view")
 
 
 
 def user_profile_view(request: HttpRequest, user_id):
     msg=None
     try:
-    # Use get_object_or_404 for cleaner handling of non-existent objects
-        user = get_object_or_404(UserProfile, user__id=user_id)
-        user_posts = Post.objects.filter(post_user=user.user)
+        user_profile = get_object_or_404(UserProfile, user__id=user_id)
+        user_posts = Post.objects.filter(post_user=user_profile.user)
 
-        # Optimize following list retrieval
-        following = [profile.user for profile in UserProfile.objects.all() if user.user in profile.followers.all()]
+        following = [profile.user for profile in UserProfile.objects.all() if user_profile.user in profile.followers.all()]
 
-        # Simplify is_following check
-        is_following = user.followers.filter(id=request.user.id).exists()
+        is_following = user_profile.followers.filter(id=request.user.id).exists()
 
-        followers = user.followers.all()
+        followers = user_profile.followers.all()
         number_of_followers = followers.count()
         favorites = Favorite.objects.filter(user=request.user)
             
@@ -82,7 +79,7 @@ def user_profile_view(request: HttpRequest, user_id):
         return render(request, 'main/not_found.html',{'msg':msg})
     
     
-    return render(request, 'accounts/profile.html', {"user":user,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers, 'following':following,'favorites':favorites})
+    return render(request, 'accounts/profile_.html', {"user_profile":user_profile,'user_posts':user_posts,'number_of_followers':number_of_followers,"is_following":is_following , 'followers':followers, 'following':following,'favorites':favorites})
 
 def add_follower(request:HttpRequest, user_id):
         
