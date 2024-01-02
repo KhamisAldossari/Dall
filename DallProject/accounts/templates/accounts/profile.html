@@ -267,14 +267,14 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src='{{ user.profile_picture.url }}' alt="Admin" class="rounded-circle" width="150">
+                    <img src='{{ user_profile.profile_picture.url }}' alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>@{{ user.user.username}} </h4>
-                      <p class="text-secondary mb-1">{{ user.major }}</p>
-                      <p class="text-muted font-size-sm">{{ user.bio }}</p>
+                      <h4>@{{ user_profile.user.username}} </h4>
+                      <p class="text-secondary mb-1">{{ user_profile.major }}</p>
+                      <p class="text-muted font-size-sm">{{ user_profile.bio }}</p>
                       <p>Followers: {{ number_of_followers }}</p>
                       <div class="d-flex">
-                {% if request.user.id == user.user.id %}
+                {% if request.user.id == user_profile.user.id %}
                 {% else %}
                 {% if is_following %}
                 
@@ -331,7 +331,7 @@
                         <h6 class="mb-0">Full Name</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        {{ user.user.first_name }} {{ user.user.last_name }}
+                        {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}
                       </div>
                     </div>
                     <hr>
@@ -340,7 +340,7 @@
                         <h6 class="mb-0">Email</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        {{user.user.email}}
+                        {{user_profile.user.email}}
                       </div>
                     </div>
                     <hr>
@@ -349,7 +349,7 @@
                         <h6 class="mb-0">Phone</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        {{ user.phone_number }}
+                        {{ user_profile.phone_number }}
                       </div>
                     </div>
                     <hr>
@@ -358,7 +358,7 @@
                         <h6 class="mb-0">University</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        {{ user.university_name }}
+                        {{ user_profile.university_name }}
                       </div>
                     </div>
                     <hr>
@@ -367,7 +367,7 @@
                         <h6 class="mb-0">Major</h6>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                           {{ user.major }}
+                           {{ user_profile.major }}
                       </div>
                     </div>
                     <hr>
@@ -376,7 +376,7 @@
                           <h6 class="mb-0">Degree</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                             {{ user.degree }}
+                             {{ user_profile.degree }}
                         </div>
                       </div>
                       <hr>
@@ -385,11 +385,11 @@
                           <h6 class="mb-0"> Birthdate</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            {{ user.birth_date }}
+                            {{ user_profile.birth_date }}
                         </div>
                       </div>
                       <hr>
-                      {% if request.user.is_authenticated and request.user.id == user.user.id %}
+                      {% if request.user.is_authenticated and request.user.id == user_profile.user.id %}
                     <div class="row">
                       <div class="col-sm-12">
                         <a class="btn btn-info " target="__blank" href="{% url 'accounts:update_user_view'%}">Edit</a>
@@ -490,7 +490,7 @@
                       </div>
                         <div class="tab-pane fade" id="tab-favorites">
                           <ul class="widget-users row">
-                            {%if request.user.id == user.user.id%}
+                            {%if request.user.id == user_profile.user.id%}
                           {% if favorites.count == 0 %}
                           <div class="alert alert-info">You don't have any favorites yet.</div>
                 {% endif %}
@@ -520,7 +520,7 @@
                     </div>
                     </div>
                     </div>
-</div>
+                    </div>
                     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
                     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <script type="text/javascript"></script>
