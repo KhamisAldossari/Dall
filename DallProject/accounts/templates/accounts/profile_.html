@@ -25,21 +25,23 @@
                                     {% else %}
                                     {% if is_following %}
 
-                                    <form method="POST" action="{% url 'accounts:remove_follower' user.id %}">
+                                    <form method="POST" action="{% url 'accounts:remove_follower' user_profile.id %}">
                                         {% csrf_token %}
                                         <button class="btn btn-outline-danger" type=submit>UnFollow</button>
                                     </form>
                                     {% else %}
-                                    <form method="POST" action="{% url 'accounts:add_follower' user.id %}">
+                                    <form method="POST" action="{% url 'accounts:add_follower' user_profile.id %}">
                                         {% csrf_token %}
                                         <button class="btn btn-outline-success" type=submit>Follow</button>
                                     </form>
                                     {% endif %}
                                     {% endif %}
-
+                                    {% if request.user.id == user_profile.user.id %}
                                     <a href="{%url 'posts:post_create' %}"> <button class="btn btn-outline-primary">Add
                                             Post</button></a>
-                                </div>
+                                        {%endif%}
+                                        </div>
+                            
                             </div>
                         </div>
                     </div>

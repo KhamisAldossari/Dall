@@ -29,9 +29,8 @@ def post_create(request:HttpRequest):
             content=request.POST["content"],
             post_user=request.user,
             )
-            if 'image' in request.FILES:
+            if 'post_image' in request.FILES:
                 new_post.post_image=request.FILES["post_image"]
-                new_post.video=request.FILES["video"]
             new_post.save()
             return redirect('posts:post_list')
     except Exception as e:
@@ -50,7 +49,7 @@ def post_detail(request, post_id):
     return render(request, 'posts/post_detail.html', {'post': post, "replies":replies})
 
 
-def post_update(request, post_id):
+def post_update(request:HttpRequest, post_id):
     msg=None
     try:
         update_post = get_object_or_404(Post, id=post_id)
@@ -58,7 +57,8 @@ def post_update(request, post_id):
         if request.method == 'POST':
             update_post.title=request.POST['title']
             update_post.content=request.POST['content']
-
+            if 'post_image' in request.FILES:
+                update_post.post_image=request.FILES["post_image"]
             action = request.POST.get('action')
             if action == 'edit':
                 update_post.save()

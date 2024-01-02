@@ -46,12 +46,9 @@ def update_major_view(request:HttpRequest,major_id):
 def delete_major_view(request:HttpRequest,major_id):
     try:
         delete_major=Major.objects.get(id=major_id)
-        '''
-        if not request.user == delete_major.owner:
-            return render(request, "main/not_authorized.html", status=401)
-        '''
+        
         delete_major.delete()
-        return redirect('majors:',)
+        return redirect('majors:detail_major_view')
     except Exception as e:
          msg = f"An error occured, please fill in all fields and try again . {e}"
     return render(request, 'majors/detail_major.html',{"msg":msg})
@@ -68,19 +65,7 @@ def major_home_view(request:HttpRequest):
         return render(request, "main/not_found.html", status=401)
     return render(request , 'majors/major_home.html',{'view_major':view_major, 'keyword':keyword})
 def detail_major_view(request:HttpRequest,major_id):
-    '''
-    try:
-        major_detail=Major.objects.get(id=major_id)
-        
-        comments = Comment.objects.filter(major=major_detail)
-
-        is_favored = request.user.is_authenticated and Favorite.objects.filter(major=major_detail, user=request.user).exists()
-
-        comment_max = Comment.objects.filter(major=major_detail).aggregate(Max("rating"))["rating__max"]
-    except:
-        return render(request, "main/not_found.html", status=401)
-    return render(request, 'major/detail_major.html',{"major_detail":major_detail,'comments':comments,'comment_max':comment_max,"is_favored":is_favored})
-    '''
+    
     major_detail=Major.objects.get(id=major_id)
     certificates = Certificate.objects.exclude(major=major_detail)
     companies = Company.objects.exclude(major=major_detail)
