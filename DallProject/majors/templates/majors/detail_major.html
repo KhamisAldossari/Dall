@@ -206,7 +206,7 @@
           {% for course in courses %}
             <div class="d-flex gap-2 justify-content-between align-items-center mt-2">
               <div class="d-flex align-items-center gap-3">
-                <img src="{{course.course_image.url}}"  class="rounded-3 avatar" />
+                <img src="{{course.course_image.url}}" style="height: 5rem;width: 5rem;"  class="rounded-3" />
                 <h5>{{ course.name}}</h5>
              </div>
               <a href="{% url 'courses:add_course_major_view' major_detail.id course.id %}" class="btn btn-primary">Add</a>

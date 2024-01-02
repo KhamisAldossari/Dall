@@ -7,6 +7,9 @@ from django.db import IntegrityError
 from .models import UserProfile
 from posts.models import Post
 from favorites.models import Favorite
+from django.core.mail import send_mail
+
+from django.conf import settings
 
 # Create your views here.
 
@@ -21,7 +24,15 @@ def register_user_view(request: HttpRequest):
 
             user_profile = UserProfile(user=user)
             user_profile.save()
+            login(request,user)
+            subject = 'welcome to DALL world'.upper()
+            message = f'Hi {user.first_name} {user.last_name}, thank you for registering in dall.'.upper()
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email,]
+            send_mail( subject, message, email_from, recipient_list )
 
+
+            return render(request,"main/welcome_email.html")
             return redirect("accounts:login_user_view")
         except IntegrityError as e:
             msg = f"Please select another username, {e}"

@@ -22,10 +22,10 @@
    {% for skill in view_skill %}
     <div class="col-4 col-12-medium h-100">
 
-      <section>
+      <div>
         <a class="text-dark" href="{%url 'skills:detail_skill_view' skill.id %}"><h2>{{ skill.name }}</h2></a>
       
-      </section>
+      </div>
     </div>
     {%endfor%}
   </div></div></div></div>
